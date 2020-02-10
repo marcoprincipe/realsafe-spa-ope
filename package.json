@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot",
-    "build": "ng build --aot --base-href=/realsafe-ope/ --prod",
+    "build-dev": "ng build --aot --base-href=/realsafe-ope/ --configuration=dev",
+    "build-hom": "ng build --aot --base-href=/realsafe-ope/ --configuration=hom",
+    "build-prod": "ng build --aot --base-href=/realsafe-ope/ --configuration=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
