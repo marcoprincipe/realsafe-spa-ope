@@ -1,0 +1,104 @@
+<rs-text-dialog></rs-text-dialog>
+
+<rs-deposit-detail 
+  *ngIf="isDepositDetail" 
+  [(visible)]="isDepositDetail">
+</rs-deposit-detail>
+
+<div class="container">
+
+  <div class="row" style="margin-top:2vh;">
+        <div class="col-sm-12">
+            <div class="form-header">
+              <div>Recolhimento de numerário</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:2vh">
+      
+      <div class="col-sm-12">
+
+          <div class="card table-content">
+
+            <div class="card-header p-sm-1 border-top table-header">
+
+                <div class="row">
+                  <div class="col-sm-3 text-center">Data</div>
+                  <div class="col-sm-2 text-left">Transação</div>
+                  <div class="col-sm-2 text-left">Usuário</div>
+                  <div class="col-sm-3 text-right">Valor</div>
+                  <div class="col-sm-2 text-center">Ação</div>
+                </div>
+            </div>
+
+            <div class="card-body p-sm-0 table-content">
+
+                <div class="row py-sm-1" *ngFor="let transactionLog of transactionLogs; let i = index">
+                  <div class="col-sm-3 text-center">{{transactionLog.dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                  <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.functionalityName}}</div>
+                  <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.userName}}</div>
+                  <div class="col-sm-3 text-right">{{transactionLog.amount | currency: "BRL"}}</div>
+                  <div class="col-sm-2 text-center">
+                    <button id="btnDepositDetail" class="action-button" title="Detalhes do depósito" (click)="listDepositDetails(i)">
+                      <span class="fa fa-align-justify fa-2x"></span>
+                    </button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="border-top border-bottom table-footer">
+
+              <div class="row py-0 px-3">
+
+                <div class="col-sm-3 text-left" style="margin-top: 0.8rem;">
+                  <div>Cédulas : {{bankNotes}}</div>
+                </div>
+
+                <div class="col-sm-4 text-left" style="margin-top: 0.8rem;">
+                  <div>Total : {{amount | currency: "BRL"}}</div>
+                </div>
+
+                <div class="col-sm-3" style="margin-top: 0.8rem;">
+                  <div>Página : {{page}} / {{pages}}</div>
+                </div>
+
+                <div class="col-sm-1" style="padding:0.5rem !important;">
+                    <button id="btnPreviousPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page <= 1"
+                      title="Página anterior" (click)="previousPage()">
+                      <span class="fa fa-angle-double-left"></span>
+                    </button>
+                </div>
+
+                <div class="col-sm-1" style="padding: 0.5rem !important;">
+                    <button id="btnNextPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page >= pages"
+                      title="Próxima página" (click)="nextPage()">
+                      <span class="fa fa-angle-double-right"></span>
+                    </button>
+                </div>
+
+              </div>
+            
+            </div>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="row" style="margin-top:2vh;">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <button id="btnConfirm" [disabled]="btnConfirmDisabled()" (click)="onConfirm()" type="button" class="btn btn-primary btn-block">Confirmar</button>
+    </div>
+    <div class="col-sm-4">
+        <button id="btnCancel" (click)="onCancel()" type="button" class="btn btn-danger btn-block">Cancelar</button>
+    </div>
+</div>        
+
+</div>

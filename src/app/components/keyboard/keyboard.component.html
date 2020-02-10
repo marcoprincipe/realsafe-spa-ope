@@ -1,0 +1,166 @@
+<div *ngIf="visible" class="backdrop">
+  <div class="keyboard-box">
+    <table width="100%" padding="0" cellpadding="0">
+      <tr><td><input id="display" [(ngModel)]="displayText" type="text" class="keyboard-display" disabled="true"></td></tr>
+    </table>
+    <div *ngIf="kbType === 'alpha'">
+      <table class="keyboard-line-top" padding="0" cellpadding="0">
+        <tr>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '1')">1</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '2')">2</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '3')">3</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '4')">4</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '5')">5</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '6')">6</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '7')">7</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '8')">8</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '9')">9</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '0')">0</button></td>
+        </tr>
+      </table>
+      <table class="keyboard-line" padding="0" cellpadding="0">
+        <tr>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'aa' : 'AA')">{{ shift === 0 ? 'á' : 'Á'}}</button></td>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'ee' : 'EE')">{{ shift === 0 ? 'é' : 'É'}}</button></td>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'ii' : 'II')">{{ shift === 0 ? 'í' : 'Í'}}</button></td>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'oo' : 'OO')">{{ shift === 0 ? 'ó' : 'Ó'}}</button></td>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'uu' : 'UU')">{{ shift === 0 ? 'ú' : 'Ú'}}</button></td>
+          <td width="16%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'cc' : 'CC')">{{ shift === 0 ? 'ç' : 'Ç'}}</button></td>
+        </tr>
+      </table>
+      <table class="keyboard-line" padding="0" cellpadding="0">
+        <tr>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'q' : 'Q')">{{ shift === 0 ? 'q' : 'Q' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'w' : 'W')">{{ shift === 0 ? 'w' : 'W' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'e' : 'E')">{{ shift === 0 ? 'e' : 'E' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'r' : 'R')">{{ shift === 0 ? 'r' : 'R' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 't' : 'T')">{{ shift === 0 ? 't' : 'T' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'y' : 'Y')">{{ shift === 0 ? 'y' : 'Y' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'u' : 'U')">{{ shift === 0 ? 'u' : 'U' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'i' : 'I')">{{ shift === 0 ? 'i' : 'I' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'o' : 'O')">{{ shift === 0 ? 'o' : 'O' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'p' : 'P')">{{ shift === 0 ? 'p' : 'P' }}</button></td>
+        </tr>
+      </table>
+      <table class="keyboard-line" padding="0" cellpadding="0">
+        <tr>
+          <td width="5%"></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'a' : 'A')">{{ shift === 0 ? 'a' : 'A' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 's' : 'S')">{{ shift === 0 ? 's' : 'S' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'd' : 'D')">{{ shift === 0 ? 'd' : 'D' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'f' : 'F')">{{ shift === 0 ? 'f' : 'F' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'g' : 'G')">{{ shift === 0 ? 'g' : 'G' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'h' : 'H')">{{ shift === 0 ? 'h' : 'H' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'j' : 'J')">{{ shift === 0 ? 'j' : 'J' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'k' : 'K')">{{ shift === 0 ? 'k' : 'K' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'l' : 'L')">{{ shift === 0 ? 'l' : 'L' }}</button></td>
+          <td width="5%"></td>
+        </tr>
+      </table>
+      <table class="keyboard-line" padding="0" cellpadding="0">
+        <tr>
+          <td width="15%">
+              <button 
+              [class.keyboard-key]="shift === 0"
+              [class.keyboard-shift-key1]="shift === 1"
+              [class.keyboard-shift-key2]="shift === 2"
+              (click)="onKeyClicked($event, 'SHIFT')">&#8679;</button>
+          </td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'z' : 'Z')">{{ shift === 0 ? 'z' : 'Z' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'x' : 'X')">{{ shift === 0 ? 'x' : 'X' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'c' : 'C')">{{ shift === 0 ? 'c' : 'C' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'v' : 'V')">{{ shift === 0 ? 'v' : 'V' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'b' : 'B')">{{ shift === 0 ? 'b' : 'B' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'n' : 'N')">{{ shift === 0 ? 'n' : 'N' }}</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, shift === 0 ? 'm' : 'M')">{{ shift === 0 ? 'm' : 'M' }}</button></td>
+          <td width="15%"><button class="keyboard-key" (click)="onKeyClicked($event, 'DEL')">&#8656;</button></td>
+        </tr>
+      </table>
+      <table class="keyboard-line" padding="0" cellpadding="0">
+        <tr>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'SPE')">!#1</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ',')">,</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '/')">/</button></td>
+          <td width="35%"><button class="keyboard-key" (click)="onKeyClicked($event, ' ')">space</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '.')">.</button></td>
+          <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'CANCEL')">&#8659;</button></td>
+          <td width="15%"><button class="keyboard-key" (click)="onKeyClicked($event, 'ENTER')">enter</button></td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="kbType === 'special'">
+      <table class="keyboard-line-top" padding="0" cellpadding="0">
+        <tr>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '1')">1</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '2')">2</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '3')">3</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '4')">4</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '5')">5</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '6')">6</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '7')">7</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '8')">8</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '9')">9</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '0')">0</button></td>
+          </tr>
+          <tr>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '~')">~</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '`')">`</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '!')">!</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '@')">@</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '#')">#</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '$')">$</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '%')">%</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '^')">^</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '&')">&</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '*')">*</button></td>
+          </tr>
+        </table>
+        <table class="keyboard-line" padding="0" cellpadding="0">
+          <tr>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '(')">(</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ')')">)</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '_')">_</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '-')">-</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '+')">+</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '=')">=</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '{')">&#123;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '}')">&#125;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '[')">[</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ']')">]</button></td>
+          </tr>
+        </table>
+        <table class="keyboard-line" padding="0" cellpadding="0">
+          <tr>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '|')">|</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '\\')">&#92;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ':')">:</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ';')">;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'a2')">&#34;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'a1')">&#39;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '<')">&#60;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '>')">&#62;</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '?')">?</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '/')">/</button></td>
+          </tr>
+        </table>
+        <table class="keyboard-line" padding="0" cellpadding="0">
+          <tr>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'ABC')">ABC</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, ',')">,</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '/')">/</button></td>
+            <td width="35%"><button class="keyboard-key" (click)="onKeyClicked($event, ' ')">space</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, '.')">.</button></td>
+            <td width="10%"><button class="keyboard-key" (click)="onKeyClicked($event, 'CANCEL')">&#8659;</button></td>
+            <td width="15%"><button class="keyboard-key" (click)="onKeyClicked($event, 'ENTER')">enter</button></td>
+          </tr>
+        </table>
+      </div>  
+  </div>
+</div>
+<div class="keyboard-accent-box">
+  <table padding="0" cellpadding="0">
+    <tr>
+      <td *ngFor="let accent of accents" width="5%"><button class="keyboard-key" (click)="onKeyClicked($event, accent)">{{accent}}</button></td>
+    </tr>
+  </table>
+</div>

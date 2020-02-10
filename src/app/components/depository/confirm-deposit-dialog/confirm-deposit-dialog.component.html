@@ -1,0 +1,61 @@
+<div class="modal fade" id="confirmDepositDialog" tabindex="-1" role="dialog">
+    
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      
+        <div class="modal-content">
+
+            <div class="modal-header table-header">
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div><strong>{{title}}</strong></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-body">
+
+              <div class="card table-content">
+                <div class="card-header border-top table-header">
+                    <div class="row">
+                      <div class="col-sm-4 text-right">Cédulas</div>
+                      <div class="col-sm-4 text-right">Valor</div>
+                      <div class="col-sm-4 text-right">Total</div>
+                    </div>
+                </div>
+                <div class="card-body table-content">
+                    <div class="row" *ngFor="let bankNote of bankNotes">
+                      <div class="col-sm-4 text-right">{{bankNote.quantity}}</div>
+                      <div class="col-sm-4 text-right">{{bankNote.value | currency: "BRL"}}</div>
+                      <div class="col-sm-4 text-right">{{bankNote.total | currency: "BRL"}}</div>
+                    </div>
+                </div>
+                <div class="border-top border-bottom table-footer">
+                  <div>Total : {{amount | currency: "BRL"}}</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer table-footer">
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                    <button id="btnYes" type="button" (click)="onButtonClicked($event, 'Y')" class="btn btn-sm btn-primary btn-block">Sim</button>
+                  </div>
+                  <div class="col-sm-4">
+                    <button id="btnNo" type="button" (click)="onButtonClicked($event, 'N')" class="btn btn-sm btn-danger btn-block">Não</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+        </div>
+    
+    </div>
+
+</div>

@@ -1,0 +1,219 @@
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome";
+
+$default-color: navy;
+$default-background-color:#f0f0f0;
+$default-border: 0.08rem solid #e0e0e0;
+
+$default-box-shadow: 0.5rem 0.5rem 0.25rem #e0e0e0;
+
+$page-header-background-color:#e0e0e0;
+$page-header-border: 0.05rem solid #d0d0d0;
+
+$menu-button-height: 3.5rem;
+$menu-button-font-size: 1.25rem;
+ 
+html, body {
+    width:100%;
+    margin: 0.75rem auto;
+    background-color: #fafafa !important;
+}
+
+.logo-image-box {
+    float: left;
+    height: 5.3rem;
+}
+
+.page-header {
+    background-color: $page-header-background-color !important;
+    border: $page-header-border !important;
+    color: $default-color;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.form-header {
+    color: $default-color;
+    background-color: $default-background-color;
+    border: $default-border;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    height: 4rem;
+    line-height: 4rem;
+    border-radius: 0.20rem;
+}
+
+.form-content {
+    background-color: $default-background-color;
+    border: $default-border;
+    padding: 1rem;
+    border-radius: 0.20rem;
+}
+
+.table-header {
+    color: blue !important;
+    background-color: #f6f6f6 !important;
+    font-weight: bold;
+}
+
+.table-content {
+    background-color: #fbfbfb;
+    border: $default-border;
+    padding: 0rem;
+    border-radius: 0.20rem;
+}
+
+.table-footer {
+    color: blue !important;
+    background-color: #f6f6f6 !important;
+    //padding: 0.75rem;
+    text-align: right;
+    font-weight: bold;
+}
+
+.detail-title {
+    color: navy;
+    background-color: #f6f6f6 !important;
+    font-size: 2.6vmin;
+    font-weight: bold;
+}
+
+.detail-header-box {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    background-color: #f6f6f6 !important;
+    border: $default-border;
+    border-radius: 0.20rem;
+}
+
+.detail-header-text {
+    font-size: 2.4vmin;
+    color: blue;
+    font-weight: bold;
+}
+
+.detail-text {
+    font-size: 2.3vmin;
+}
+
+.detail-footer-box {
+    padding-right: 0.10rem !important;
+    background-color: #f6f6f6 !important;
+    text-align: right;
+    font-weight: bold;
+}
+
+.detail-table-header {
+    color: blue;
+    padding-top: 0.30rem !important;
+    padding-bottom: 0.30rem !important;
+    background-color: #f6f6f6 !important;
+    font-weight: bold;
+}
+
+.detail-table-footer {
+    color: blue;
+    padding-top: 0.30rem !important;
+    padding-bottom: 0.30rem !important;
+    padding-right: 0.50rem !important;
+    background-color: #f6f6f6 !important;
+    text-align: right;
+    font-weight: bold;
+}
+
+.menu-button {
+    color: $default-color !important;
+    height: $menu-button-height;
+    font-size: $menu-button-font-size !important;
+    background-color: $default-background-color !important;
+    border: $default-border !important;
+    padding: 1rem;
+    border-radius: 0.20rem !important;
+}
+
+.menu-button:focus {
+    color: blue !important;
+    background-color: white !important;
+    border: $default-border !important;
+    box-shadow: $default-box-shadow !important;
+}
+
+.action-button {
+    color: $default-color !important;
+    background-color: $default-background-color !important;
+    border: $default-border !important;
+    padding: 0.43rem 0.50rem;
+    font-size: 0.50rem;
+    cursor: pointer;
+}
+
+.action-button:focus {
+    color: blue !important;
+    background-color: white !important;
+    border: $default-border !important;
+    box-shadow: $default-box-shadow !important;
+}
+
+.menu-back-button {
+    color: maroon !important;
+    height: $menu-button-height;
+    font-size: $menu-button-font-size !important;
+    background-color: $default-background-color !important;
+    border: $default-border !important;
+    padding: 1rem;
+    border-radius: 0.20rem !important;
+}
+
+.menu-back-button:focus {
+    color: red !important;
+    background-color: white !important;
+    border: $default-border !important;
+    box-shadow: $default-box-shadow !important;
+}
+
+.menu-back2-button {
+    color: whitesmoke !important;
+    height: $menu-button-height;
+    font-size: $menu-button-font-size !important;
+    background-color: rgb(0, 122, 255) !important;
+    border: $default-border !important;
+    padding: 1rem;
+    border-radius: 0.20rem !important;
+}
+
+.menu-back2-button:focus {
+    color: white !important;
+    background-color: rgb(0, 122, 255) !important;
+    border: $default-border !important;
+    box-shadow: $default-box-shadow !important;
+}
+
+.menu-more-button {
+    color: rgb(54, 14, 233) !important;
+    height: $menu-button-height;
+    font-size: $menu-button-font-size !important;
+    background-color: $default-background-color !important;
+    border: $default-border !important;
+    padding: 1rem;
+    border-radius: 0.20rem !important;
+}
+
+.menu-more-button:focus {
+    color: rgb(36, 6, 92) !important;
+    background-color: white !important;
+    border: $default-border !important;
+    box-shadow: $default-box-shadow !important;
+}
+
+.menu-key {
+    color: $default-color !important;
+    height: $menu-button-height;
+    line-height: $menu-button-height;
+    font-size: $menu-button-font-size !important;
+    background-color: $default-background-color !important;
+    border: $default-border !important;
+    text-align: center;
+    border-radius: 0.20rem !important;
+}

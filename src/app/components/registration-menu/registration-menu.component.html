@@ -1,0 +1,117 @@
+<rs-text-dialog></rs-text-dialog>
+<div class="container">
+
+  <div class="row" style="margin-top:2vh">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="form-header">
+        <div class="text-center">Cadastros</div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+
+  <div class="row" style="margin-top:2vh">
+      <div class="col-sm-6">
+        <rs-menu-button *ngIf="functionalitiesRole[0]" name="opcao01" 
+            [title]="functionalitiesRole[0].functionalityName"
+            [accessKey]="functionalitiesRole[0].functionalityAccessKey" 
+            (onClick)="navigateTo(functionalitiesRole[0].functionalityRoute)">
+        </rs-menu-button>
+      </div>
+      <div class="col-sm-6">
+        <rs-menu-button *ngIf="functionalitiesRole[1]" name="opcao02" 
+          [title]="functionalitiesRole[1].functionalityName"
+          [accessKey]="functionalitiesRole[1].functionalityAccessKey" 
+          (onClick)="navigateTo(functionalitiesRole[1].functionalityRoute)">
+        </rs-menu-button>
+    </div>
+  </div>
+
+  <div class="col-sm-12"></div>
+
+  <div class="row" style="margin-top:1vh">
+    <div class="col-sm-6">
+      <rs-menu-button *ngIf="functionalitiesRole[2]" name="opcao03" 
+        [title]="functionalitiesRole[2].functionalityName"
+        [accessKey]="functionalitiesRole[2].functionalityAccessKey" 
+        (onClick)="navigateTo(functionalitiesRole[2].functionalityRoute)">
+      </rs-menu-button>
+    </div>
+    <div class="col-sm-6">
+      <rs-menu-button *ngIf="functionalitiesRole[3]" name="opcao04" 
+        [title]="functionalitiesRole[3].functionalityName"
+        [accessKey]="functionalitiesRole[3].functionalityAccessKey" 
+        (onClick)="navigateTo(functionalitiesRole[3].functionalityRoute)">
+      </rs-menu-button>
+    </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[4]" name="opcao05" 
+      [title]="functionalitiesRole[4].functionalityName"
+      [accessKey]="functionalitiesRole[4].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[4].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[5]" name="opcao06" 
+      [title]="functionalitiesRole[5].functionalityName"
+      [accessKey]="functionalitiesRole[5].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[5].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[6]" name="opcao07" 
+      [title]="functionalitiesRole[6].functionalityName"
+      [accessKey]="functionalitiesRole[6].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[6].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[7]" name="opcao08" 
+      [title]="functionalitiesRole[7].functionalityName"
+      [accessKey]="functionalitiesRole[7].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[7].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[8]" name="opcao09" 
+      [title]="functionalitiesRole[8].functionalityName"
+      [accessKey]="functionalitiesRole[8].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[8].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[9]" name="opcao10" 
+      [title]="functionalitiesRole[9].functionalityName"
+      [accessKey]="functionalitiesRole[9].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[9].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+  <div class="row" style="margin-top:1vh;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <button (click)="goBack()" 
+        id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>

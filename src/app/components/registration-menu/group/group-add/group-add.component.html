@@ -1,0 +1,495 @@
+<rs-text-dialog></rs-text-dialog>
+<ng-vk-keyboard (onEnterClicked)="onEnterClicked($event)" (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabel">Novo Grupo</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- main app container -->
+                <div class="card m-3">
+                    <div class="card-body">
+                        <form [formGroup]="frmAddGroup" (ngSubmit)="onSubmit()">
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Proprietário :</label>
+                                        <select formControlName="groupOwnerId" class="form-control"
+                                            [setFocus]='{"field": "groupId", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.groupOwnerId.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let owwer of owwers" value="{{owwer.groupOwnerId}}">
+                                                {{owwer.groupOwnerName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.groupOwnerId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.groupOwnerId.errors.required">Selecionar um proprietário da
+                                                lista</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Grupo :</label>
+                                        <select formControlName="groupId" class="form-control"
+                                            [setFocus]='{"field": "companyName", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.groupId.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">
+                                                {{userGroup.groupName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.groupId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.groupId.errors.required">Selecionar um grupo da lista</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Razão social :</label>
+                                        <input type="text" formControlName="companyName" class="form-control"
+                                            placeholder="Nome da empresa" maxlength="50" 
+                                            (click)="showKeyboard({ 'fieldId': 'companyName', 'isNumeric': true, 'maxLength': 50 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+                                        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.companyName.errors.required">Escrever a razão social</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Razão social :</label>
+                                        <input type="text" formControlName="companyName" class="form-control"
+                                            placeholder="Nome da empresa" maxlength="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+                                        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.companyName.errors.required">Escrever a razão social</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Nome fantasia :</label>
+                                        <input type="text" formControlName="businessName" class="form-control"
+                                            placeholder="Nome popular da empresa" maxlength="50"
+                                            (click)="showKeyboard({ 'fieldId': 'businessName', 'isNumeric': true, 'maxLength': 50 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.businessName.errors }" />
+                                        <div *ngIf="submitted && f.businessName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.businessName.errors.required">Escrever o nome como o grupo é
+                                                conhecido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Nome fantasia :</label>
+                                        <input type="text" formControlName="businessName" class="form-control"
+                                            placeholder="Nome popular da empresa" maxlength="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.businessName.errors }" />
+                                        <div *ngIf="submitted && f.businessName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.businessName.errors.required">Escrever o nome como a empresa é
+                                                conhecida</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>CNPJ :</label>
+                                        <input type="text" formControlName="companyId" class="form-control"
+                                            placeholder="Número do registro" maxlength="14" rsCnpj
+                                            (click)="showKeyboard({ 'fieldId': 'companyId', 'isNumeric': true, 'maxLength': 14 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.companyId.errors }" />
+                                        <div *ngIf="submitted && f.companyId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.companyId.errors.required">Escrever o número do CNPJ</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>CNPJ :</label>
+                                        <input type="text" formControlName="companyId" class="form-control"
+                                            placeholder="Número do registro" maxlength="14" rsCnpj
+                                            [ngClass]="{ 'is-invalid': submitted && f.companyId.errors }" />
+                                        <div *ngIf="submitted && f.companyId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.companyId.errors.required">Escrever o número do CNPJ</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Logradouro :</label>
+                                        <input type="text" formControlName="address" class="form-control"
+                                            placeholder="Avenida, Rua, Alameda, Praça e Número" maxlength="256"
+                                            (click)="showKeyboard({ 'fieldId': 'address', 'isNumeric': true, 'maxLength': 256 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                            <div *ngIf="f.address.errors.required">Escrever o endereço</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Logradouro :</label>
+                                        <input type="text" formControlName="address" class="form-control"
+                                            placeholder="Avenida, Rua, Alameda, Praça e Número" maxlength="256"
+                                            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                            <div *ngIf="f.address.errors.required">Escrever o endereço</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Complemento :</label>
+                                        <input type="text" formControlName="addressComplement" class="form-control"
+                                            placeholder="Andar, Conjunto, Sala" maxlength="50"
+                                            (click)="showKeyboard({ 'fieldId': 'addressComplement', 'isNumeric': true, 'maxLength': 50 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.addressComplement.errors }" />
+                                        <div *ngIf="submitted && f.addressComplement.errors" class="invalid-feedback">
+                                            <div *ngIf="f.addressComplement.errors.required">Escrever o complemento
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Complemento :</label>
+                                        <input type="text" formControlName="addressComplement" class="form-control"
+                                            placeholder="Andar, Conjunto, Sala" maxlength="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.addressComplement.errors }" />
+                                        <div *ngIf="submitted && f.addressComplement.errors" class="invalid-feedback">
+                                            <div *ngIf="f.addressComplement.errors.required">Escrever o complemento
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Bairro :</label>
+                                        <input type="text" formControlName="addressNeighborhood" class="form-control"
+                                            placeholder="Nome do bairro" maxlength="50"
+                                            (click)="showKeyboard({ 'fieldId': 'addressNeighborhood', 'isNumeric': true, 'maxLength': 50 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.addressNeighborhood.errors }" />
+                                        <div *ngIf="submitted && f.addressNeighborhood.errors" class="invalid-feedback">
+                                            <div *ngIf="f.addressNeighborhood.errors.required">Escrever o nome do bairro
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Bairro :</label>
+                                        <input type="text" formControlName="addressNeighborhood" class="form-control"
+                                            placeholder="Nome do bairro" maxlength="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.addressNeighborhood.errors }" />
+                                        <div *ngIf="submitted && f.addressNeighborhood.errors" class="invalid-feedback">
+                                            <div *ngIf="f.addressNeighborhood.errors.required">Escrever o nome do bairro
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Cidade :</label>
+                                        <input type="text" formControlName="cityName" class="form-control"
+                                            placeholder="Nome da cidade" maxlength="50"
+                                            (click)="showKeyboard({ 'fieldId': 'cityName', 'isNumeric': true, 'maxLength': 50 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.cityName.errors }" />
+                                        <div *ngIf="submitted && f.cityName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cityName.errors.required">Escrever o nome da cidade</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Cidade :</label>
+                                        <input type="text" formControlName="cityName" class="form-control"
+                                            placeholder="Nome da cidade" maxlength="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.cityName.errors }" />
+                                        <div *ngIf="submitted && f.cityName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cityName.errors.required">Escrever o nome da cidade</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Estado :</label>
+                                        <input type="text" formControlName="stateCode" class="form-control"
+                                            placeholder="Nome da estado" maxlength="2"
+                                            (click)="showKeyboard({ 'fieldId': 'stateCode', 'isNumeric': true, 'maxLength': 2 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.stateCode.errors }" />
+                                        <div *ngIf="submitted && f.stateCode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.stateCode.errors.required">Escrever o nome do estado</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Estado :</label>
+                                        <input type="text" formControlName="stateCode" class="form-control"
+                                            placeholder="Nome da estado" maxlength="2"
+                                            [ngClass]="{ 'is-invalid': submitted && f.stateCode.errors }" />
+                                        <div *ngIf="submitted && f.stateCode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.stateCode.errors.required">Escrever o nome do estado</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Site :</label>
+                                        <input type="text" formControlName="siteAddress" class="form-control"
+                                            placeholder="www." maxlength="100"
+                                            (click)="showKeyboard({ 'fieldId': 'siteAddress', 'isNumeric': true, 'maxLength': 100 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.siteAddress.errors }" />
+                                        <div *ngIf="submitted && f.siteAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.siteAddress.errors.required">Escrever o site do grupo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Site :</label>
+                                        <input type="text" formControlName="siteAddress" class="form-control"
+                                            placeholder="www." maxlength="100"
+                                            [ngClass]="{ 'is-invalid': submitted && f.siteAddress.errors }" />
+                                        <div *ngIf="submitted && f.siteAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.siteAddress.errors.required">Escrever o site do grupo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Contato :</label>
+                                        <input type="text" formControlName="contact" class="form-control"
+                                            placeholder="Nome da pessoa de contato na empresa" maxlength="100"
+                                            (click)="showKeyboard({ 'fieldId': 'contact', 'isNumeric': true, 'maxLength': 100 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                                        <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contact.errors.required">Escrever um nome de contato na
+                                                empresa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Contato :</label>
+                                        <input type="text" formControlName="contact" class="form-control"
+                                            placeholder="Nome da pessoa de contato na empresa" maxlength="100"
+                                            [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
+                                        <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contact.errors.required">Escrever um nome de contato na
+                                                empresa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Email de contato :</label>
+                                        <input type="text" formControlName="emailAddress" class="form-control"
+                                            placeholder="E-mail de contato da empresa" maxlength="100"
+                                            (click)="showKeyboard({ 'fieldId': 'emailAddress', 'isNumeric': true, 'maxLength': 100 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+                                        <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.emailAddress.errors.required">Escrever o e-mail</div>
+                                            <div *ngIf="f.emailAddress.errors.email">Entre com um e-mail válido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Email de contato :</label>
+                                        <input type="text" formControlName="emailAddress" class="form-control"
+                                            placeholder="E-mail de contato da empresa" maxlength="100"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+                                        <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.emailAddress.errors.required">Escrever o e-mail</div>
+                                            <div *ngIf="f.emailAddress.errors.email">Entre com um e-mail válido</div>                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Fone comercial :</label>
+                                        <input type="text" formControlName="phoneNumber" class="form-control" 
+                                            placeholder="Número" maxlength="10" onlyNumbersInput
+                                            (click)="showKeyboard({ 'fieldId': 'phoneNumber', 'isNumeric': true, 'maxLength': 10 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phoneNumber.errors.required">Escrever o número do telefone
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Fone comercial :</label>
+                                        <input type="text" formControlName="phoneNumber" class="form-control"
+                                            placeholder="Número" maxlength="10" onlyNumbersInput
+                                            [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phoneNumber.errors.required">Escrever o número do telefone
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Celular comercial :</label>
+                                        <input type="text" formControlName="cellphoneNumber" class="form-control"
+                                            placeholder="Número" maxlength="10" onlyNumbersInput
+                                            (click)="showKeyboard({ 'fieldId': 'cellphoneNumber', 'isNumeric': true, 'maxLength': 10 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.cellphoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.cellphoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cellphoneNumber.errors.required">Escrever o número do celular
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Celular comercial :</label>
+                                        <input type="text" formControlName="cellphoneNumber" class="form-control"
+                                            placeholder="Número" maxlength="10" onlyNumbersInput
+                                            [ngClass]="{ 'is-invalid': submitted && f.cellphoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.cellphoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cellphoneNumber.errors.required">Escrever o número do celular
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Informações adicionais :</label>
+                                        <textarea type="text" formControlName="additionalInfo" class="form-control"
+                                            maxlength="256" rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Informações adicionais :</label>
+                                        <textarea type="text" formControlName="additionalInfo" class="form-control"
+                                            maxlength="256" [setFocus]='{"field": "status", "allowEmpty": false}'
+                                            (click)="showKeyboard({ 'fieldId': 'additionalInfo', 'isNumeric': false, 'maxLength': 256 })"
+                                            autocomplete="off" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Informações adicionais :</label>
+                                        <textarea type="text" formControlName="additionalInfo" class="form-control"
+                                            maxlength="256" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input formControlName="status" type="checkbox" class="form-check-input"
+                                            id="status" value="">
+                                        <label class="form-check-label" for="status">Ativo? :</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row" style="margin-top:5vh;"></div>  
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-primary btn-block">Confirmar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <button data-dismiss="modal" type="reset" (click)="onReset()"
+                                            class="btn btn-danger btn-block">Sair
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

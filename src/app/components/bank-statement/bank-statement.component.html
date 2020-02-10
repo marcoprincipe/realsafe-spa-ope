@@ -1,0 +1,136 @@
+<rs-text-dialog
+  #bankStatementTextDialog
+  name="bankStatementTextDialog">
+</rs-text-dialog
+>
+
+<rs-deposit-detail 
+  *ngIf="isDepositDetail" 
+  [(visible)]="isDepositDetail">
+</rs-deposit-detail>
+
+<rs-opening-detail
+  *ngIf="isOpeningDetail"
+  [(visible)]="isOpeningDetail">
+</rs-opening-detail>
+
+<rs-closing-detail
+  *ngIf="isClosingDetail"
+  [(visible)]="isClosingDetail">
+</rs-closing-detail>
+
+<rs-cash-collection-detail
+  *ngIf="isCashCollectionDetail"
+  [(visible)]="isCashCollectionDetail">
+</rs-cash-collection-detail>
+
+<div class="container">
+
+  <div class="row" style="margin-top:2vh;">
+      <div class="col-sm-12">
+          <div class="form-header">
+              <div>Extrato</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row" style="margin-top:2vh">
+      
+      <div class="col-sm-12">
+
+          <div class="card table-content">
+
+            <div class="card-header p-sm-1 border-top table-header">
+              
+                <div class="row">
+                  <div class="col-sm-3 text-center">Data</div>
+                  <div class="col-sm-2 text-left">Transação</div>
+                  <div class="col-sm-2 text-left">Usuário</div>
+                  <div class="col-sm-3 text-right">Valor</div>
+                  <div class="col-sm-2 text-center">Ação</div>
+                </div>
+            </div>
+
+            <div class="card-body p-sm-0 table-content">
+
+                <div class="row py-sm-1" *ngFor="let transactionLog of transactionLogs; let i = index" [ngStyle]="{'color': transactionLog.status === 'P' && transactionLog.functionalityId === 3 ? 'red': ''}">
+                    <div class="col-sm-3 text-center">{{transactionLog.dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                    <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.functionalityName}}</div>
+                    <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.userName}}</div>
+                    <div class="col-sm-3 text-right">{{transactionLog.amount | currency: "BRL"}}</div>
+                    <div class="col-sm-2 text-center">
+                    <button *ngIf="transactionLog.functionalityId === 1" 
+                      id="btnDepositDetail" class="action-button" title="Detalhes da abertura" (click)="getOpeningDetail(i)">
+                      <span class="fa fa-align-justify fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 2" 
+                      id="btnDepositDetail" class="action-button" title="Detalhes do fechamento" (click)="getClosingDetail(i)">
+                      <span class="fa fa-align-justify fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 3" 
+                      id="btnDepositDetail" class="action-button" title="Detalhes do depósito" (click)="listDepositDetails(i)">
+                      <span class="fa fa-align-justify fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 10" 
+                      id="btnCashCollectionDetails" class="action-button" title="Detalhes do recolhimento de numerário" (click)="listCashCollectionDetails(i)">
+                      <span class="fa fa-align-justify fa-2x"></span>
+                    </button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="border-top border-bottom table-footer">
+
+              <div class="row py-0 px-3">
+
+                <div class="col-sm-3 text-left" style="margin-top: 0.8rem;">
+                  <div>Cédulas : {{bankNotes}}</div>
+                </div>
+
+                <div class="col-sm-4 text-left" style="margin-top: 0.8rem;">
+                  <div>Total : {{amount | currency: "BRL"}}</div>
+                </div>
+
+                <div class="col-sm-3" style="margin-top: 0.8rem;">
+                  <div>Página : {{page}} / {{pages}}</div>
+                </div>
+
+                <div class="col-sm-1" style="padding:0.5rem !important;">
+                    <button id="btnPreviousPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page <= 1"
+                      title="Página anterior" (click)="previousPage()">
+                      <span class="fa fa-angle-double-left"></span>
+                    </button>
+                </div>
+
+                <div class="col-sm-1" style="padding: 0.5rem !important;">
+                    <button id="btnNextPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page >= pages"
+                      title="Próxima página" (click)="nextPage()">
+                      <span class="fa fa-angle-double-right"></span>
+                    </button>
+                </div>
+
+              </div>
+            
+            </div>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="row" style="margin-top:2vh;">
+    <div class="col-sm-4" ></div>
+    <div class="col-sm-4">
+      <button id="btnPrintReceipt" type="button" (click)="doPrintReceipt()" [disabled]="disablePrintButton()" class="btn btn-primary btn-block">Imprimir</button>
+    </div>
+    <div class="col-sm-4">
+        <button id="btnBack" (click)="goBack()" type="button" class="btn btn-danger btn-block">Cancelar</button>
+    </div>
+  </div>
+
+</div>

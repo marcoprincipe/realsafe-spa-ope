@@ -1,0 +1,129 @@
+
+<rs-text-dialog></rs-text-dialog>
+<rs-owner-add></rs-owner-add>
+<rs-owner-detail></rs-owner-detail>
+<ng-vk-keyboard
+    (onEnterClicked)="onEnterClicked($event)"
+    (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+<div class="container-fluid">
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-header">
+                    <div>Cadastro de Proprietários</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row" style="margin-top:2vh;">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupOwnerId" (change)="onOwnerChange($event)"
+                                            [disabled]="groupOwners.length < 2"
+                                            [setFocus]='{"field": "groupId", "allowEmpty": false}'
+                                            class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                            <option value="" selected>Proprietário</option>
+                                            <option *ngFor="let groupOwner of groupOwners" value="{{groupOwner.groupOwnerId}}">{{groupOwner.groupOwnerName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                            [disabled]="userGroups.length < 2"
+                                            [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                                            class="form-control" id="groupId" name="groupId">
+                                            <option value="" selected>Grupo</option>
+                                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                        </select>
+                                    </div>
+                                </div>    
+                                <div class="col-md-2 align-self-center">
+                                    <button id="btnSearch" type="button" class="btn btn-primary btn-block" (click)="searchGrupOwners()" data-toggle="modal">Buscar</button>
+                                </div>                        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                                            [disabled]="userCompanies.length < 2"
+                                            [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                                            class="form-control" id="companyId" name="companyId">
+                                            <option value="" selected>Empresa</option>
+                                            <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.unitId" (change)="onUnitChange($event)"
+                                            [disabled]="userUnits.length < 2"
+                                            [setFocus]='{"field": "btnSearch", "allowEmpty": false}'
+                                            class="form-control" id="unitId" name="unitId">
+                                            <option value="" selected>Filial/Unidade</option>
+                                            <option *ngFor="let userUnit of userUnits" value="{{userUnit.unitId}}">{{userUnit.unitName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-2  align-self-center">
+                                    <button pButton type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-modal" >+ Novo</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="font-size:12px;">Você está vendo 2 de 10 proprietários.</label>   
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </form>
+                    <div class="row" style="margin-top:2vh;"></div>
+                    <div class="card table-content">
+                       <div class="card-header border-top detail-table-header">
+                            <div class="row">
+                                <div class="col-md-3 text-center" style="font-size:13px;">Relação de Proprietários</div>
+                                <div class="col-md-2 text-center" style="font-size:13px;">Contato</div>
+                                <div class="col-md-2 text-center" style="font-size:13px;">Telefone</div>                                  
+                                <div class="col-md-3 text-center" style="font-size:13px;">Grupos Associados</div>
+                                <div class="col-md-2 text-center" style="font-size:13px;">Ação</div>
+                            </div>
+                        </div>
+                        <div class="card-body table-content" style="padding-top: 0.25rem; padding-bottom: 0.25rem;">
+                            <div class="row" *ngFor="let owner of owners; let i = index" 
+                            [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+ 
+                                <div class="col-md-3 text-center" style="font-size:13px;">{{owner.ownerName}}</div>
+                                <div class="col-md-3 text-center" style="font-size:13px;">{{owner.contact}}</div>
+                                <div class="col-md-2 text-center" style="font-size:13px;">{{owner.phoneNumber}}</div>
+                                <div class="col-md-3 text-center" style="font-size:13px;">{{owner.groupName}}</div>
+                                <div class="col-md-2 text-center">
+                                <button class="btn-xs" title="Editar um proprietário"
+                                        (click)="updateGroupOwner(i)">
+                                        <span class="fa fa-pencil"></span>
+                                </button>&nbsp;                                    
+                                <button class="btn-xs" title="Detalhes do proprietário"
+                                        (click)="viewGroupOwnerDetails(i)">
+                                        <span class="fa fa-eye"></span>
+                                </button>                                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+
+            </div>        
+            <div class="row" style="margin-top:15vh;">
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-back2-button"><b>Voltar</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button id="btnBack" class="btn btn-block menu-more-button">Ver mais proprietários</button>
+                </div>
+                <div class="col-sm-4">
+                    <button (click)="goLoginPage()" id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+                </div>
+            </div>
+ 

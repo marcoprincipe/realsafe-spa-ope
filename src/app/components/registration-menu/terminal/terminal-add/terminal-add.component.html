@@ -1,0 +1,297 @@
+<rs-text-dialog></rs-text-dialog>
+<ng-vk-keyboard (onEnterClicked)="onEnterClicked($event)" (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabel">Novo terminal</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- main app container -->
+                <div class="card m-3">
+                    <div class="card-body">
+                        <form [formGroup]="frmAddTerminal" (ngSubmit)="onSubmit()">
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Código do terminal :</label>
+                                        <input type="text" formControlName="terminalId" class="form-control"
+                                            placeholder="Escreva o código do terminal" maxlength="15"
+                                            (click)="showKeyboard({ 'fieldId': 'terminalId', 'isNumeric': true, 'maxLength': 15 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.terminalId.errors }" />
+                                        <div *ngIf="submitted && f.terminalId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.terminalId.errors.required">Escrever o código do terminal
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Código do terminal :</label>
+                                        <input type="text" formControlName="terminalId" class="form-control"
+                                            placeholder="Escreva o código do terminal" maxlength="15"
+                                            [ngClass]="{ 'is-invalid': submitted && f.terminalId.errors }" />
+                                        <div *ngIf="submitted && f.terminalId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.businessterminalIdName.errors.required">Escrever o código do
+                                                terminal</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Técnico responsável :</label>
+                                        <input type="text" formControlName="userName" class="form-control"
+                                            placeholder="Escreva o nome completo do técnico" maxlength="100"
+                                            (click)="showKeyboard({ 'fieldId': 'userName', 'isNumeric': true, 'maxLength': 100 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.userName.errors.required">Escrever o nome do técnico</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Técnico responsável :</label>
+                                        <input type="text" formControlName="userName" class="form-control"
+                                            placeholder="Escreva o nome completo do técnico" maxlength="100"
+                                            [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.userName.errors.required">Escrever o nome do técnico</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Email do técnico :</label>
+                                        <input type="text" formControlName="emailAddress" class="form-control"
+                                            placeholder="Escreva o e-mail do técnico" maxlength="100"
+                                            (click)="showKeyboard({ 'fieldId': 'emailAddress', 'isNumeric': true, 'maxLength': 100 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+                                        <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.emailAddress.errors.required">Escrever o e-mail do técnico
+                                            </div>
+                                            <div *ngIf="f.emailAddress.errors.email">Entre com um e-mail válido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Email do técnico :</label>
+                                        <input type="text" formControlName="emailAddress" class="form-control"
+                                            placeholder="Escreva o e-mail do técnico" maxlength="100"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+                                        <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.emailAddress.errors.required">Escrever o e-mail do técnico
+                                            </div>
+                                            <div *ngIf="f.emailAddress.errors.email">Entre com um e-mail válido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Celular do técnico :</label>
+                                        <input type="text" formControlName="cellPhoneNumber" class="form-control"
+                                            placeholder="Número do celular" maxlength="10" onlyNumbersInput
+                                            (click)="showKeyboard({ 'fieldId': 'cellPhoneNumber', 'isNumeric': true, 'maxLength': 10 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.cellPhoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.cellPhoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cellPhoneNumber.errors.required">Escrever o celuar do técnico
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Celular do técnico :</label>
+                                        <input type="text" formControlName="cellPhoneNumber" class="form-control"
+                                            placeholder="Número do celular" maxlength="10" onlyNumbersInput
+                                            [ngClass]="{ 'is-invalid': submitted && f.cellPhoneNumber.errors }" />
+                                        <div *ngIf="submitted && f.cellPhoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cellPhoneNumber.errors.required">Escrever o celuar do técnico
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Data :</label>
+                                        <input type="text" formControlName="creationDate" class="form-control"
+                                            placeholder="dd/mm/aaaa de execução da atividade" maxlength="8" onlyNumbersInput
+                                            (click)="showKeyboard({ 'fieldId': 'creationDate', 'isNumeric': true, 'maxLength': 8 })"
+                                            [ngClass]="{ 'is-invalid': submitted && f.creationDate.errors }" />
+                                        <div *ngIf="submitted && f.creationDate.errors" class="invalid-feedback">
+                                            <div *ngIf="f.creationDate.errors.required">Escrever a data de realização da atividade                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Data :</label>
+                                        <input type="text" formControlName="creationDate" class="form-control"
+                                            placeholder="dd/mm/aaaa de execução da atividade" maxlength="8" onlyNumbersInput
+                                            [ngClass]="{ 'is-invalid': submitted && f.creationDate.errors }" />
+                                        <div *ngIf="submitted && f.creationDate.errors" class="invalid-feedback">
+                                            <div *ngIf="f.creationDate.errors.required">Escrever a data de realização da atividade
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Proprietário :</label>
+                                        <select formControlName="groupOwnerId" class="form-control"
+                                            [setFocus]='{"field": "groupId", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.groupOwnerId.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let owwer of owwers" value="{{owwer.groupOwnerId}}">
+                                                {{owwer.groupOwnerName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.groupOwnerId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.groupOwnerId.errors.required">Selecionar um proprietário</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Grupo :</label>
+                                        <select formControlName="groupId" class="form-control"
+                                            [setFocus]='{"field": "companyName", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.groupId.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">
+                                                {{userGroup.groupName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.groupId.errors" class="invalid-feedback">
+                                            <div *ngIf="f.groupId.errors.required">Selecionar um grupo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Empresa :</label>
+                                        <select formControlName="companyName" class="form-control"
+                                            [setFocus]='{"field": "businessName", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let userCompany of userCompanies"
+                                                value="{{userCompany.companyId}}">
+                                                {{userCompany.companyName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.companyName.errors.required">Selecionar uma empresa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Filial/Unidade :</label>
+                                        <select formControlName="unitName" class="form-control"
+                                            [setFocus]='{"field": "additionalInfo", "allowEmpty": false}'
+                                            [ngClass]="{ 'is-invalid': submitted && f.unitName.errors }">
+                                            <option value="" selected>Selecione</option>
+                                            <option *ngFor="let userUnit of userUnits" value="{{userUnit.unitId}}">
+                                                {{userUnit.unitName}}</option>
+                                            <option value="Teste">Teste</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.unitName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.unitName.errors.required">Selecionar uma filial</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === true" class="form-group">
+                                        <label>Informações adicionais :</label>
+                                        <textarea type="text" formControlName="additionalInfo" class="form-control"
+                                            maxlength="256" [setFocus]='{"field": "status", "allowEmpty": false}'
+                                            (click)="showKeyboard({ 'fieldId': 'additionalInfo', 'isNumeric': false, 'maxLength': 256 })"
+                                            autocomplete="off" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div *ngIf="useVK === false" class="form-group">
+                                        <label>Informações adicionais :</label>
+                                        <textarea type="text" formControlName="additionalInfo" class="form-control"
+                                            maxlength="256" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input formControlName="status" type="checkbox" class="form-check-input"
+                                            id="status" value="">
+                                        <label class="form-check-label" for="status">Ativo? :</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top:5vh;"></div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-primary btn-block">Confirmar
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <button data-dismiss="modal" type="reset" (click)="onReset()"
+                                            class="btn btn-danger btn-block">Sair
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

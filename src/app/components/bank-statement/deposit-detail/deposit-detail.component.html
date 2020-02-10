@@ -1,0 +1,93 @@
+<div id="depositDetailDialog" class="modal fade" tabindex="-1" role="dialog">
+    
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    
+      <div class="modal-content">
+
+          <div class="modal-header detail-title">
+              <div class="align-middle">
+                <div><strong>Detalhes do depósito - {{unitName}}</strong></div>
+              </div>
+          </div>
+
+          <div class="modal-body">
+    
+            <div class="container-fluid detail-header-box">
+              
+                <div class="row detail-header-text">
+                  <div class="col-sm-3 text-center">Data</div>
+                  <div class="col-sm-3 text-center">Terminal</div>
+                  <div class="col-sm-3 text-center">NSU</div>
+                  <div class="col-sm-3 text-center">Usuário</div>
+                </div>
+
+                <div class="row border-top detail-text">
+                  <div class="col-sm-3 text-center">{{dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                  <div class="col-sm-3 text-center">{{terminalId}}</div>
+                  <div class="col-sm-3 text-center">{{nsuTerminal}}</div>
+                  <div class="col-sm-3 text-center">{{userName}}</div>
+                </div>
+            
+            </div>
+          
+            <div class="container-fluid" style="margin-top:2vh;">
+
+              <div class="row border-top border-bottom detail-header-box detail-header-text">
+                <div class="col-sm-4 text-right">Valor</div>
+                <div class="col-sm-4 text-right">Cédulas</div>
+                <div class="col-sm-4 text-right">Total</div>
+              </div>
+
+              <div class="row py-1">
+                <div class="col-sm-12"></div>
+              </div>
+
+              <div class="row detail-text" *ngFor="let depositDetail of depositDetails">
+                <div class="col-sm-4 text-right">{{depositDetail.amount | currency: "BRL"}}</div>
+                <div class="col-sm-4 text-right">{{depositDetail.quantity}}</div>
+                <div class="col-sm-4 text-right">{{depositDetail.quantity * depositDetail.amount | currency: "BRL"}}</div>
+              </div>
+
+              <div class="row py-1">
+                <div class="col-sm-12"></div>
+              </div>
+              
+              <div class="row border-top detail-header-box detail-header-text">
+                
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                  <div class="text-right">Cédulas : {{bankNotes}}</div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="text-right">Total : {{amount | currency: "BRL"}}</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer detail-footer-box">
+
+            <div class="container-fluid">
+
+              <div class="row">
+
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                  <button *ngIf="printReceipt === 'Y'" id="btnPrintReceipt" type="button" (click)="doPrintReceipt()" class="btn btn-sm btn-primary btn-block">Imprimir</button>
+                </div>
+                <div class="col-sm-4">
+                  <button id="btnExit" type="button" (click)="hide()" class="btn btn-sm btn-danger btn-block">Sair</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+  
+  </div>
+
+</div>

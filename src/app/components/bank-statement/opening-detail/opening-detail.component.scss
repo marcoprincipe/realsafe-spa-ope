@@ -1,0 +1,37 @@
+@media (min-width: 576px) {
+    .modal-dialog { max-width: none; }
+}
+
+.modal-dialog {
+    width: 80%;
+    padding: 0;
+}
+
+.btn-sm {
+    font-size: 2.4vmin;
+}
+
+input[readonly] {
+    background-color: white;
+    border-color: #e0e0e0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.form-check-input:disabled~.form-check-label {
+    color: blue;
+    font-weight: bold;
+}
+
+input[type=checkbox] {
+    -ms-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+    margin-top: 0.4rem;
+}

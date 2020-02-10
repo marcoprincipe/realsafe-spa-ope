@@ -1,0 +1,226 @@
+<rs-text-dialog></rs-text-dialog>
+
+<ng-vk-keyboard
+    (onEnterClicked)="onEnterClicked($event)"
+    (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+
+<rs-deposit-detail 
+  *ngIf="isDepositDetail" 
+  [(visible)]="isDepositDetail"
+  printReceipt="Y">
+</rs-deposit-detail>
+
+<rs-opening-detail
+  *ngIf="isOpeningDetail"
+  [(visible)]="isOpeningDetail"
+  printReceipt="Y">
+</rs-opening-detail>
+
+<rs-closing-detail
+  *ngIf="isClosingDetail"
+  [(visible)]="isClosingDetail"
+  printReceipt="Y">
+</rs-closing-detail>
+
+<rs-cash-collection-detail
+  *ngIf="isCashCollectionDetail"
+  [(visible)]="isCashCollectionDetail"
+  printReceipt="Y">
+</rs-cash-collection-detail>
+
+<div class="container">
+
+  <div class="row" style="margin-top:2vh;">
+      <div class="col-sm-12">
+          <div class="form-header">
+              <div>Reimpressão de Comprovante</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Bloco para apresentação do filtro de transações -->
+
+  <div *ngIf="isShowFilter" style="margin-top:2vh">
+    
+    <form>
+  
+        <div class="row">
+
+          <div class="col-sm-2"></div>
+
+          <div class="col-sm-8">
+
+            <div class="form-content">
+
+              <div class="form-row">
+
+                <div *ngIf="useVK === true" class="form-group col-sm-12">
+                    <label for="nsuTerminal">NSU do comprovante :</label>
+                    <input [(ngModel)]="form.nsuTerminal" maxlength="15"
+                    oninput="this.value = this.value.toUpperCase()"
+                    [setFocus]='{"field": "startDate", "allowEmpty": true}'
+                    type="text" class="form-control" id="nsuTerminal" name="nsuTerminal" 
+                    (click)="showKeyboard({ 'fieldId': 'nsuTerminal', 'isNumeric': false, 'maxLength': 15 })"
+                    autocomplete="off" placeholder="Informe o NSU do comprovante">
+                </div>
+
+                <div *ngIf="useVK === false" class="form-group col-sm-12">
+                  <label for="nsuTerminal">NSU do comprovante :</label>
+                  <input [(ngModel)]="form.nsuTerminal" maxlength="15"
+                  oninput="this.value = this.value.toUpperCase()"
+                  [setFocus]='{"field": "startDate", "allowEmpty": true}'
+                  type="text" class="form-control" id="nsuTerminal" name="nsuTerminal" 
+                  autocomplete="off" placeholder="Informe o NSU do comprovante">
+              </div>
+
+              </div>
+
+              <div class="form-row">
+
+                <div *ngIf="useVK === true" class="form-group col-sm-6">
+                    <label for="startDate">Data inicial :</label>
+                    <input [(ngModel)]="form.startDate" maxlength="10"
+                    [setFocus]='{"field": "endDate", "allowEmpty": true}'
+                    type="text" class="form-control" id="startDate" name="startDate" 
+                    (click)="showKeyboard({ 'fieldId': 'startDate', 'isNumeric': true, 'maxLength': 8 })"
+                    autocomplete="off" placeholder="dd/mm/aaaa">
+                </div>
+
+                <div *ngIf="useVK === false" class="form-group col-sm-6">
+                    <label for="startDate">Data inicial :</label>
+                    <input [(ngModel)]="form.startDate" maxlength="10" rsDatePtBR
+                    [setFocus]='{"field": "endDate", "allowEmpty": true}'
+                    type="text" class="form-control" id="startDate" name="startDate" 
+                    autocomplete="off" placeholder="dd/mm/aaaa">
+                </div>
+
+                <div *ngIf="useVK === true" class="form-group col-sm-6">
+                    <label for="endDate">Data final :</label>
+                    <input [(ngModel)]="form.endDate" maxlength="10"
+                    [setFocus]='{"field": "btnConfirmSearch", "allowEmpty": true}'
+                    type="text" class="form-control" id="endDate" name="endDate" 
+                    (click)="showKeyboard({ 'fieldId': 'endDate', 'isNumeric': true, 'maxLength': 8 })"
+                    autocomplete="off" placeholder="dd/mm/aaaa">
+                </div>
+
+                <div *ngIf="useVK === false" class="form-group col-sm-6">
+                    <label for="endDate">Data final :</label>
+                    <input [(ngModel)]="form.endDate" maxlength="10" rsDatePtBR
+                    [setFocus]='{"field": "btnConfirmSearch", "allowEmpty": true}'
+                    type="text" class="form-control" id="endDate" name="endDate" 
+                    autocomplete="off" placeholder="dd/mm/aaaa">
+                </div>
+
+              </div>
+            
+            </div>
+
+            <div class="row" style="margin-top:2vh;">
+                <div class="col-sm-6">
+                    <button id="btnConfirmSearch" [disabled]="disableConfirmSearchButton()" (click)="onConfirmSearch()" type="button" class="btn btn-primary btn-block">Confirmar</button>
+                </div>
+                <div class="col-sm-6">
+                    <button id="btnCancelSearch" (click)="onCancelSearch()" type="button" class="btn btn-danger btn-block">Cancelar</button>
+                </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-2"></div>
+
+      </div>
+
+    </form>
+  
+  </div>
+  
+  <!-- Bloco para apresentação da lista de transações -->
+
+  <div *ngIf="isShowTransactions" class="row" style="margin-top:2vh">
+      
+      <div class="col-sm-12">
+
+          <div class="card table-content">
+
+            <div class="card-header p-sm-1 border-top table-header">
+                <div class="row">
+                  <div class="col-sm-3 text-center">Data</div>
+                  <div class="col-sm-2 text-left">Transação</div>
+                  <div class="col-sm-2 text-left">Usuário</div>
+                  <div class="col-sm-3 text-right">Valor</div>
+                  <div class="col-sm-2 text-center">Ação</div>
+                </div>
+            </div>
+
+            <div class="card-body p-sm-0 table-content">
+                <div class="row py-sm-1" *ngFor="let transactionLog of transactionLogs; let i = index;">
+                  <div class="col-sm-3 text-center">{{transactionLog.dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                  <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.functionalityName}}</div>
+                  <div class="col-sm-2 text-left" style="white-space:nowrap; overflow: hidden; text-overflow:ellipsis;">{{transactionLog.userName}}</div>
+                  <div class="col-sm-3 text-right">{{transactionLog.amount | currency: "BRL"}}</div>
+                  <div class="col-sm-2 text-center">
+                    <button *ngIf="transactionLog.functionalityId === 1" 
+                      id="btnReprintOpening" class="action-button" title="Imprimir comprovante" (click)="getOpeningDetail(i)">
+                      <span class="fa fa-print fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 2" 
+                      id="btnReprintClosing" class="action-button" title="Imprimir comprovante" (click)="getClosingDetail(i)">
+                      <span class="fa fa-print fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 3" 
+                      id="btnReprintDeposit" class="action-button" title="Imprimir comprovante" (click)="listDepositDetail(i)">
+                      <span class="fa fa-print fa-2x"></span>
+                    </button>
+                    <button *ngIf="transactionLog.functionalityId === 10" 
+                      id="btnReprintCashCollection" class="action-button" title="Imprimir comprovante" (click)="listCashCollectionDetails(i)">
+                      <span class="fa fa-print fa-2x"></span>
+                    </button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="border-top border-bottom table-footer">
+
+              <div class="row py-0 px-3">
+
+                <div class="col-sm-10" style="margin-top: 0.8rem;">
+                  <div>Página : {{page}} / {{pages}}</div>
+                </div>
+
+                <div class="col-sm-1" style="padding:0.5rem !important;">
+                    <button id="btnPreviousPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page <= 1"
+                      title="Página anterior" (click)="previousPage()">
+                      <span class="fa fa-angle-double-left"></span>
+                    </button>
+                </div>
+                
+                <div class="col-sm-1" style="padding: 0.5rem !important;">
+                    <button id="btnNextPage" 
+                      class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                      [disabled]="page >= pages"
+                      title="Próxima página" (click)="nextPage()">
+                      <span class="fa fa-angle-double-right"></span>
+                    </button>
+                </div>
+
+              </div>
+
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+                <button id="btnCancelList" (click)="onCancelList()" type="button" class="btn btn-danger btn-block">Cancelar</button>
+            </div>
+        </div>
+
+      </div>
+
+  </div>
+
+</div>

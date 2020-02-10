@@ -1,0 +1,112 @@
+
+<rs-text-dialog></rs-text-dialog>
+<rs-company-add     
+    *ngIf="isCompanyAdd"
+    [(visible)]="isCompanyAdd">
+</rs-company-add>
+
+<rs-company-detail
+    *ngIf="isCompanyDetail"
+    [(visible)]="isCompanyDetail">    
+</rs-company-detail>
+
+<div class="container-fluid">
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-header">
+                    <div>Cadastro de Empresas</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row" style="margin-top:2vh;">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupOwnerId" (change)="onOwnerChange($event)"
+                                            [disabled]="groupOwners.length < 2"
+                                            [setFocus]='{"field": "groupId", "allowEmpty": false}'
+                                            class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                            <option value="" selected>Proprietário</option>
+                                            <option *ngFor="let groupOwner of groupOwners" value="{{groupOwner.groupOwnerId}}">{{groupOwner.groupOwnerName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                            [disabled]="userGroups.length < 2"
+                                            [setFocus]='{"field": "btnSearch", "allowEmpty": false}'
+                                            class="form-control" id="groupId" name="groupId">
+                                            <option value="" selected>Grupo</option>
+                                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                        </select>
+                                    </div>
+                                </div>    
+                                <div class="col-md-2 align-self-center">
+                                    <button id="btnSearch" type="button" class="btn btn-primary btn-block" (click)="searchCompanies()">Buscar</button>
+                                </div>                        
+                                <div class="col-md-10">
+                                </div>
+                                <div class="col-md-2  align-self-center">
+                                    <button id="btnAddCompany" type="button" class="btn btn-primary btn-block" (click)="addCompany()" >+ Novo</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="font-size:12px;">Você está vendo 2 de 10 usuários.</label>   
+                                </div>
+                            </div>
+        
+                        </div>
+                    </form>
+                    <div class="row" style="margin-top:2vh;"></div>
+                    <div class="card table-content">
+                        <div class="card-header border-top detail-table-header">
+                            <div class="row">
+                                <div class="col-md-4 text-center" style="font-size:13px;">Relação de Empresas</div>
+                                <div class="col-md-3 text-center" style="font-size:13px;">Contato</div>
+                                <div class="col-md-3 text-center" style="font-size:13px;">Telefone</div>                                  
+                                <div class="col-md-2 text-center" style="font-size:13px;">Ação</div>
+                            </div>
+                        </div>
+                        <div class="card-body table-content" style="padding-top: 0.25rem; padding-bottom: 0.25rem;">
+                            <div class="row" *ngFor="let company of companies; let i = index" 
+                                [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+
+                                <div class="col-md-4 text-center" style="font-size:12px;">{{company.companyName}}</div>
+                                <div class="col-md-3 text-center" style="font-size:12px;">{{company.contactName}}</div>
+                                <div class="col-md-3 text-center" style="font-size:12px;">{{company.phoneNumber}}</div>
+                                <div class="col-md-2 text-center">
+                                    <button id="btnCompanyUpdate" class="action-button" title="Editar uma empresa"
+                                        (click)="updateCompany(i)">
+                                        <span class="fa fa-pencil fa-2x"></span>
+                                    </button>&nbsp;                                    
+                                    <button id="btnCompanyDetail" class="action-button" title="Detalhes da empresa"
+                                        (click)="viewCompany(i)">
+                                        <span class="fa fa-eye fa-2x"></span>
+                                    </button>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+
+            </div>        
+            <div class="row" style="margin-top:15vh;">
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-back2-button"><b>Voltar</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button id="btnBack" class="btn btn-block menu-more-button"><b>Ver mais empresas</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button (click)="goLoginPage()" id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+                </div>
+            </div>
+</div>
+

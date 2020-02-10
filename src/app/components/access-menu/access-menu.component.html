@@ -1,0 +1,75 @@
+<rs-text-dialog></rs-text-dialog>
+
+<div class="container">
+
+    <div class="row" style="margin-top:2vh">
+
+        <div class="col-sm-12">
+            <div class="form-header">
+                <div class="text-center">Acesso</div>
+            </div>
+        </div>
+
+    </div>
+
+    <form>
+
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+
+                <div class="form-content">
+
+                    <div class="form-group">
+                        <label for="groupId">Grupo :</label>
+                        <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                            [disabled]="userGroups.length < 2"
+                            [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                            class="form-control" id="groupId" name="groupId">
+                            <option value="" selected>Selecione o grupo</option>
+                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyId">Empresa :</label>
+                        <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                            [disabled]="userCompanies.length < 2"
+                            [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                            class="form-control" id="companyId" name="companyId">
+                            <option value="" selected>Selecione a empresa</option>
+                            <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitId">Filial / Unidade :</label>
+                        <select [(ngModel)]="form.unitId"  (change)="onUnitChange($event)"
+                            [disabled]="userUnits.length < 2"
+                            [setFocus]='{"field": "btnConfirm", "allowEmpty": false}'
+                            class="form-control" id="unitId" name="unitId">
+                            <option value="" selected>Selecione a filial / unidade</option>
+                            <option *ngFor="let userUnit of userUnits" value="{{userUnit.unitId}}">{{userUnit.unitName}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+    </form>
+
+    <div class="row" style="margin-top:2vh;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <button id="btnConfirm" (click)="onConfirm()" [disabled]="disableConfirmButton()" type="button" class="btn btn-primary btn-block">Confirmar</button>
+        </div>
+        <div class="col-sm-4">
+            <button id="btnCancel" (click)="onCancel()" type="button" class="btn btn-danger btn-block">Cancelar</button>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>   
+    
+</div>

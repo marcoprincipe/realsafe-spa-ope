@@ -1,0 +1,139 @@
+<rs-text-dialog></rs-text-dialog>
+
+<div class="container">
+
+  <div class="toast" id="sensorsToast" style="position: absolute; top: 0; right: 0; min-width: 60vmin; z-index: 999;">
+    <div class="toast-header bg-danger text-white">
+        <strong class="mr-auto" style="font-size:3.0vmin;"><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;{{toastHeader}}</strong>
+        <button type="button" class="ml-2 mb-1 bg-danger border-0" data-dismiss="toast">
+          <span class="text-white fa-2x" aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body text-danger">
+        <div *ngFor="let toastMessage of toastMessages" style="font-size:2.7vmin;"><strong>{{toastMessage}}</strong></div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:2vh">
+    <div class="col-sm-12">
+      <div class="form-header">
+        <div class="text-center">Selecione a opção desejada</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:2vh">
+      <div class="col-sm-6">
+        <rs-menu-button *ngIf="functionalitiesRole[0]" name="opcao01" 
+            [title]="functionalitiesRole[0].functionalityName"
+            [disabled]="disabledButton(0)"
+            [accessKey]="functionalitiesRole[0].functionalityAccessKey" 
+            (onClick)="navigateTo(functionalitiesRole[0].functionalityRoute)">
+        </rs-menu-button>
+      </div>
+      <div class="col-sm-6">
+        <rs-menu-button *ngIf="functionalitiesRole[1]" name="opcao02" 
+          [title]="functionalitiesRole[1].functionalityName"
+          [disabled]="disabledButton(1)"
+          [accessKey]="functionalitiesRole[1].functionalityAccessKey" 
+          (onClick)="navigateTo(functionalitiesRole[1].functionalityRoute)">
+        </rs-menu-button>
+    </div>
+  </div>
+
+  <div class="col-sm-12"></div>
+
+  <div class="row" style="margin-top:1vh">
+    <div class="col-sm-6">
+      <rs-menu-button *ngIf="functionalitiesRole[2]" name="opcao03" 
+        [title]="functionalitiesRole[2].functionalityName"
+        [disabled]="disabledButton(2)"
+        [accessKey]="functionalitiesRole[2].functionalityAccessKey" 
+        (onClick)="navigateTo(functionalitiesRole[2].functionalityRoute)">
+      </rs-menu-button>
+    </div>
+    <div class="col-sm-6">
+      <rs-menu-button *ngIf="functionalitiesRole[3]" name="opcao04" 
+        [title]="functionalitiesRole[3].functionalityName"
+        [disabled]="disabledButton(3)"
+        [accessKey]="functionalitiesRole[3].functionalityAccessKey" 
+        (onClick)="navigateTo(functionalitiesRole[3].functionalityRoute)">
+      </rs-menu-button>
+    </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[4]" name="opcao05" 
+      [title]="functionalitiesRole[4].functionalityName"
+      [disabled]="disabledButton(4)"
+      [accessKey]="functionalitiesRole[4].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[4].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[5]" name="opcao06" 
+      [title]="functionalitiesRole[5].functionalityName"
+      [disabled]="disabledButton(5)"
+      [accessKey]="functionalitiesRole[5].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[5].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[6]" name="opcao07" 
+      [title]="functionalitiesRole[6].functionalityName"
+      [disabled]="disabledButton(6)"
+      [accessKey]="functionalitiesRole[6].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[6].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[7]" name="opcao08" 
+      [title]="functionalitiesRole[7].functionalityName"
+      [disabled]="disabledButton(7)"
+      [accessKey]="functionalitiesRole[7].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[7].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:1vh">
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[8]" name="opcao09" 
+      [title]="functionalitiesRole[8].functionalityName"
+      [disabled]="disabledButton(8)"
+      [accessKey]="functionalitiesRole[8].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[8].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+  <div class="col-sm-6">
+    <rs-menu-button *ngIf="functionalitiesRole[9]" name="opcao10" 
+      [title]="functionalitiesRole[9].functionalityName"
+      [disabled]="disabledButton(9)"
+      [accessKey]="functionalitiesRole[9].functionalityAccessKey" 
+      (onClick)="navigateTo(functionalitiesRole[9].functionalityRoute)">
+    </rs-menu-button>
+  </div>
+</div>
+
+<div class="col-sm-12"></div>
+
+<div class="row" style="margin-top:10vh;">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <button (click)="goBack()" 
+      id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+  
+</div>

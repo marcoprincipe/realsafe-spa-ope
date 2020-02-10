@@ -1,0 +1,122 @@
+<rs-deposit-detail 
+  *ngIf="isDepositDetail" 
+  [(visible)]="isDepositDetail"
+  (onModalHide)="onCloseDepositDetail()">
+</rs-deposit-detail>
+
+<div id="cashCollectionDetailDialog" class="modal fade" [ngStyle]="{'display': isDepositDetail === true ? 'none' : 'block'}" tabindex="-1" role="dialog">
+    
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    
+      <div class="modal-content">
+
+          <div class="modal-header detail-title">
+            <div class="align-middle">
+              <div><strong>Detalhes do recolhimento de numerário - {{unitName}}</strong></div>
+            </div>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="container-fluid detail-header-box">
+
+              <div class="row detail-header-text">
+                <div class="col-sm-3 text-center">Data</div>
+                <div class="col-sm-3 text-center">Terminal</div>
+                <div class="col-sm-3 text-center">NSU</div>
+                <div class="col-sm-3 text-center">Usuário</div>
+              </div>
+
+              <div class="row border-top detail-text">
+                <div class="col-sm-3 text-center">{{dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                <div class="col-sm-3 text-center">{{terminalId}}</div>
+                <div class="col-sm-3 text-center">{{nsuTerminal}}</div>
+                <div class="col-sm-3 text-center">{{userName}}</div>
+              </div>
+            </div>
+
+            <div class="container-fluid" style="margin-top:2vh;">
+
+              <div class="row border-top border-bottom detail-header-box detail-header-text">
+                <div class="col-sm-3 text-center">Data</div>
+                <div class="col-sm-3 text-center">NSU</div>
+                <div class="col-sm-2 text-right">Cédulas</div>
+                <div class="col-sm-2 text-right">Valor</div>
+                <div class="col-sm-2 text-center">Ação</div>
+              </div>
+
+              <div class="row py-1">
+                <div class="col-sm-12"></div>
+              </div>
+
+              <div class="row detail-text py-sm-1" *ngFor="let transactionLog of transactionLogs; let i = index">
+                <div class="col-sm-3 text-center">{{transactionLog.dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                <div class="col-sm-3 text-left">{{transactionLog.nsuTerminal}}</div>
+                <div class="col-sm-2 text-right">{{transactionLog.bankNotes}}</div>
+                <div class="col-sm-2 text-right">{{transactionLog.amount | currency: "BRL"}}</div>
+                <div class="col-sm-2 text-center">
+                  <button id="btnDepositDetail" class="action-button" title="Detalhes do depósito" (click)="listDepositDetails(i)">
+                    <span class="fa fa-align-justify fa-2x"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row py-1">
+                <div class="col-sm-12"></div>
+              </div>
+  
+              <div class="row border-top detail-header-box detail-header-text">
+
+                <div class="col-sm-3 text-right" style="margin-top: 0.8rem;">
+                  <div>Cédulas : {{bankNotes}}</div>
+                </div>
+
+                <div class="col-sm-4 text-right" style="margin-top: 0.8rem;">
+                  <div>Total : {{amount | currency: "BRL"}}</div>
+                </div>
+                  
+                <div class="col-sm-3 text-right" style="margin-top: 0.8rem;">
+                  <div>Página : {{page}} / {{pages}}</div>
+                </div>
+
+                <div class="col-sm-1" style="padding:0.5rem !important;">
+                  <button id="btnPreviousPage" 
+                    class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                    [disabled]="page <= 1"
+                    title="Página anterior" (click)="previousPage()">
+                    <span class="fa fa-angle-double-left"></span>
+                  </button>
+                </div>
+
+                <div class="col-sm-1" style="padding: 0.5rem !important;">
+                  <button id="btnNextPage" 
+                    class="btn btn-sm btn-primary btn-block" style="width:100%;" 
+                    [disabled]="page >= pages"
+                    title="Próxima página" (click)="nextPage()">
+                    <span class="fa fa-angle-double-right"></span>
+                  </button>
+                </div>
+                
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer detail-footer-box">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                  <button *ngIf="printReceipt === 'Y'" id="btnPrintReceipt" type="button" (click)="doPrintReceipt()" class="btn btn-sm btn-primary btn-block">Imprimir</button>
+                </div>
+                <div class="col-sm-4">
+                  <button id="btnExitCashCollectionDetail" type="button" (click)="hide()" class="btn btn-sm btn-danger btn-block">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+  </div>
+</div>

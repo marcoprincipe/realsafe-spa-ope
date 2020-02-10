@@ -1,0 +1,27 @@
+<div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div>{{title}}</div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div>{{message}}</div>
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button id="btnYes" type="button" (click)="onButtonClicked($event, 'S')" class="btn btn-sm btn-primary btn-block">Sim</button>
+            </div>
+            <div class="col-sm-4">
+              <button id="btnNo" type="button" (click)="onButtonClicked($event, 'N')" class="btn btn-sm btn-danger btn-block">Não</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

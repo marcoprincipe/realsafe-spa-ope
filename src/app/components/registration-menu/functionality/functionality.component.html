@@ -1,0 +1,367 @@
+<div class="container-fluid">
+
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-header">
+                    <div>Cadastro de Funcionalidades</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    
+        <div class="row" style="margin-top:5vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal" >Nova Funcionalidade</button>
+            </div>
+            <div class="col-sm-6"></div>
+        </div>
+    
+        <div class="row" style="margin-top:5vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th width="20%">Nome</th>
+                                    <th width="50%">Descrição</th>
+                                    <th width="50%">Perfis associados</th>
+                                    <th width="5%">&nbsp;&nbsp;&nbsp;&nbsp;Ações&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr>
+                                    <td>Abertura</td>
+                                    <td>Abertura contábil</td>
+                                    <td></td>
+                                    <td> 
+                                        <button type="button" class="close" aria-label="Editar" data-toggle="modal" data-target="#add-modal">
+                                                <span class="fa fa-pencil"></span>
+                                        </button>&nbsp;                                    
+                                        <button type="button" class="close" aria-label="Visualizar" data-toggle="modal" data-target="#view-modal">
+                                                <span class="fa fa-eye"></span>
+                                        </button>&nbsp;                                    
+                                        <button type="button" class="close" aria-label="Excluir" data-toggle="modal" data-target="#delete-modal">
+                                                <span class="fa fa-trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>                        
+                                <tr>
+                                    <td>Troca de Senha</td>
+                                    <td>Troca de senha de usuários</td>
+                                    <td></td>
+                                    <td> 
+                                        <button type="button" class="close" aria-label="Editar" data-toggle="modal" data-target="#add-modal">
+                                                <span class="fa fa-pencil"></span>
+                                        </button>&nbsp;                                    
+                                        <button type="button" class="close" aria-label="Visualizar" data-toggle="modal" data-target="#view-modal">
+                                                <span class="fa fa-eye"></span>
+                                        </button>&nbsp;                                    
+                                        <button type="button" class="close" aria-label="Excluir" data-toggle="modal" data-target="#delete-modal">
+                                                <span class="fa fa-trash"></span>
+                                        </button>
+                                    </td>
+                            </tbody>
+                        </table>
+                    </div>
+    
+    <!--
+        
+                    <div class="card-body table-content">
+                        <div class="row" *ngFor="let transportCompany of transportCompanies; let i = index" [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+                        <div class="col-sm-4 text-left">{{transportCompany.groupOwnerName}}</div>
+                        <div class="col-sm-3 text-left">{{transportCompany.businessName}}</div>
+                        <div class="col-sm-3 text-center">{{transportCompany.groupOwnerId}}</div>
+                        <div class="col-sm-2 text-center">
+                            <a class="btn btn-success btn-xs" href="view.html">VI</a>
+                            <a class="btn btn-warning btn-xs" href="edit.html">ED</a>
+                            <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">EX</a>
+                        </div>
+                        </div>
+                    </div>
+     --> 
+                </div>
+            <div class="col-sm-2"></div>
+                          
+        </div>
+    
+        <div class="row" style="margin-top:2vh;">
+                <div class="col-sm-3" ></div>
+                <div class="col-sm-6">
+                    <button (click)="goBack()" 
+                    id="btnBack" class="btn btn-block menu-back-button"><b>Voltar</b></button>
+                </div>
+                <div class="col-sm-3"></div>
+              </div>
+    
+    </div>
+    
+    <!-- Modal Adicionar -->
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Adicionar Funcionalidade</h4>
+                </div>
+                <div class="modal-body">
+    
+                    <form (ngSubmit)="salvarFuncionalidade()">
+                        <div class="row" style="margin-top:2vh;">
+                            <div class="col-sm-12">
+                
+                                <div class="form-content">
+    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Nome :</label>
+                                                <input [(ngModel)]="form.name" maxlength="10" 
+                                                type="text" class="form-control" id="name" name="name">
+                                            </div>
+                                        </div>
+                                    </div>
+     
+                                    <div class="row">
+                                        <div class="col-md-12"> 
+                                            <div class="form-group">
+                                                <label for="description">Descrição :</label>
+                                                <input [(ngModel)]="form.description" maxlength="50" 
+                                                    type="text" class="form-control" id="description" name="description">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Perfis Associados :</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkAdm">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkAdm" name="roles" value="1">Administrador
+                                                    </label> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkTes">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkTes" name="chkTes" value="2">Tesoureiro
+                                                    </label> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkGer">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkGer" name="chkGer" value="3">Gerente
+                                                    </label> 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkOpe">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkOpe" name="chkOpe" value="4">Operador
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkSis">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkSis" name="chkSis" value="6">Sistema
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkTec">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkTec" name="chkTec" value="5">Manutenção
+                                                </label> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkOpeETV">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkOpeETV" name="chkOpeETV" value="7">Operador ETV
+                                                </label> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                
+                    </form>
+    
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancel"  type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button id="btnConfirm" (click)="onConfirm()" [disabled]="disableConfirmButton()" type="button" class="btn btn-primary">Adicionar</button>
+               </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Modal Visualizar -->
+    <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalLabel">Visualizar Funcionalidades</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="margin-top:2vh;">
+                            <div class="col-sm-12">
+                
+                                <div class="form-content">
+    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Nome :</label>
+                                                <input [(ngModel)]="form.name" maxlength="10" 
+                                                type="text" class="form-control" id="name" name="name" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="row">
+                                        <div class="col-md-12"> 
+                                            <div class="form-group">
+                                                <label for="description">Descrição :</label>
+                                                <input [(ngModel)]="form.description" maxlength="50" 
+                                                    type="text" class="form-control" id="description" name="description" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Perfis Associados :</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkAdm">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkAdm" name="roles" value="1" disabled>Administrador
+                                                    </label> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkTes">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkTes" name="chkTes" value="2" disabled>Tesoureiro
+                                                    </label> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="form-check-label" for="chkGer">
+                                                            <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                                class="form-check-input" id="chkGer" name="chkGer" value="3" disabled>Gerente
+                                                    </label> 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkOpe">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkOpe" name="chkOpe" value="4" disabled>Operador
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkSis">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkSis" name="chkSis" value="6" disabled>Sistema
+                                                </label> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkTec">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkTec" name="chkTec" value="5" disabled>Manutenção
+                                                </label> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="chkOpeETV">
+                                                    <input  [(ngModel)]="form.roles" type="checkbox" 
+                                                        class="form-check-input" id="chkOpeETV" name="chkOpeETV" value="7" disabled>Operador ETV
+                                                </label> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCancel"  type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+        
+    
+    <!-- Modal  Excluir-->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Excluir Funcionalidade</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir esta funcionalidade?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Sim</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    

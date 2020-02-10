@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="pt_BR">
+
+  <head>
+  
+    <base href="/">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script>
+
+      document.oncontextmenu = function (event) {
+        event.preventDefault()
+      }
+
+      document.onkeydown = function (event) {
+        if (event.keyCode === 116) {
+            return false;
+        }
+      };
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <app-root>
+      <div class="container-fluid">
+
+          <div class="align-middle logo-image-box">
+            <img src="assets/logo-realsafe.png" height="100%">
+          </div>
+          <div class="card page-header">
+            <div class="card-body">
+              <div class="align-middle">Real$afe</div>
+          </div>
+        </div>
+      
+        <div class="row" style="margin-top:35vh;">
+
+          <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+              <div class="text-center">
+                <div class="spinner-border text-primary" role="status"></div>
+                <h4 class="text-primary" style="margin-top:3vh;"><strong>Carregando, por favor aguarde...</strong></h4>
+              </div>
+            </div>
+          <div class="col-sm-3"></div>
+
+        </div>
+
+    </app-root>
+
+  </body>
+
+  </html>

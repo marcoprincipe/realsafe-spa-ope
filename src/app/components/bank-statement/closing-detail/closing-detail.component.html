@@ -1,0 +1,123 @@
+<div id="closingDetailDialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+  
+            <div class="modal-header detail-title">
+                <div class="align-middle">
+                    <div><strong>Detalhes do fechamento - {{unitName}}</strong></div>
+                </div>
+            </div>
+  
+            <div class="modal-body">
+  
+                <div class="container-fluid detail-header-box">
+  
+                    <div class="row detail-header-text">
+                        <div class="col-sm-3 text-center">Data</div>
+                        <div class="col-sm-3 text-center">Terminal</div>
+                        <div class="col-sm-3 text-center">NSU</div>
+                        <div class="col-sm-3 text-center">Usuário</div>
+                    </div>
+                    <div class="row border-top detail-text">
+                        <div class="col-sm-3 text-center">{{dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                        <div class="col-sm-3 text-center">{{terminalId}}</div>
+                        <div class="col-sm-3 text-center">{{nsuTerminal}}</div>
+                        <div class="col-sm-3 text-center">{{userName}}</div>
+                    </div>
+                
+                </div>
+  
+                <div class="container-fluid form-content" style="margin-top:2vw;">
+  
+                    <div class="form-row">
+  
+                        <div class="col-sm-6">
+                            <label class="detail-header-text py-0 my-0" for="lastOpeningDateTime">Última abertura :</label>
+                        </div>
+  
+                        <div class="col-sm-6">
+                            <label class="detail-header-text" for="lastOpeningAmount">&nbsp;</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-sm-12">
+                            <hr style="margin-top:0rem;">
+                        </div>
+                    </div>
+
+                    <div class="form-row p-0">
+
+                        <div class="form-group col-sm-6">
+                            <input [ngModel]="closingDetail.lastOpeningDateTime | date : 'dd/MM/yyyy HH:mm' : 'UTC'" readonly="true"
+                                tabindex="-1" type="text" class="form-control detail-text" id="lastOpeningDateTime" name="lastOpeningDateTime"> 
+                        </div>
+  
+                        <div class="form-group col-sm-6">
+                            <input [ngModel]="closingDetail.lastOpeningAmount | currency : 'BRL'" readonly="true"
+                                tabindex="-1" style="text-align: right" type="text" class="form-control detail-text" id="lastOpeningAmount" name="lastOpeningAmount"> 
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-sm-6">
+                            <label class="detail-header-text" for="closingDateTime">Fechamento :</label>
+                        </div>
+  
+                        <div class="col-sm-6">
+                            <label class="detail-header-text" for="amountInSafe">&nbsp;</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-sm-12">
+                            <hr style="margin-top:0rem;">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+  
+                        <div class="form-group col-sm-6">
+                            <input [ngModel]="closingDetail.closingDateTime | date : 'dd/MM/yyyy HH:mm' : 'UTC'" readonly="true"
+                                tabindex="-1" type="text" class="form-control detail-text" id="closingDateTime" name="closingDateTime"> 
+                        </div>
+  
+                        <div class="form-group col-sm-6">
+                            <input [ngModel]="closingDetail.amountInSafe | currency : 'BRL'" readonly="true"
+                                tabindex="-1" style="text-align: right" type="text" class="form-control detail-text" id="amountInSafe" name="amountInSafe"> 
+                        </div>
+                            
+                    </div>
+                
+                </div>
+  
+            </div>
+  
+            <div class="modal-footer detail-footer-box">
+  
+                <div class="container-fluid">
+                
+                    <div class="row">
+  
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button *ngIf="printReceipt === 'Y'" id="btnPrintReceipt" type="button" (click)="doPrintReceipt()" class="btn btn-sm btn-primary btn-block">Imprimir</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button id="btnExit" type="button" (click)="hide()" class="btn btn-sm btn-danger btn-block">Sair</button>
+                        </div>
+  
+                    </div>
+                
+                </div>
+  
+            </div>
+  
+        </div>
+  
+    </div>
+  
+  </div>

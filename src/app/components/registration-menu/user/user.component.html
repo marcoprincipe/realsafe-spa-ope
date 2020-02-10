@@ -1,0 +1,541 @@
+<div class="container-fluid">
+
+    <div class="row" style="margin-top:2vh;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="form-header">
+                <div>Cadastro de Usuários</div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+    <div class="row" style="margin-top:5vh;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <form>
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                    [disabled]="userGroups.length < 2"
+                                    [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                                    class="form-control" id="groupId" name="groupId">
+                                    <option value="" selected>Proprietário</option>
+                                    <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                </select>
+                            </div>                                    
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                    [disabled]="userGroups.length < 2"
+                                    [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                                    class="form-control" id="groupId" name="groupId">
+                                    <option value="" selected>Grupo</option>
+                                    <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                </select>
+                            </div>                                    
+                        </div>
+                        <div class="col-md-2 align-self-center">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal">Buscar</button>
+                        </div>                        
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                                    [disabled]="userCompanies.length < 2"
+                                    [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                                    class="form-control" id="companyId" name="companyId">
+                                    <option value="" selected>Empresa</option>
+                                    <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                                </select>
+                            </div>                                    
+                        </div>        
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                                    [disabled]="userCompanies.length < 2"
+                                    [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                                    class="form-control" id="companyId" name="companyId">
+                                    <option value="" selected>Filial/Unidade</option>
+                                    <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                                </select>
+                            </div>                                    
+                        </div>
+                        <div class="col-md-2  align-self-center">
+                            <button pButton type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-modal" >+ Novo</button>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Você está vendo 2 de 10 usuários.</label>   
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>        
+        <div class="col-sm-2"></div>
+    </div>
+
+    <div class="row" style="margin-top:5vh;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th width="55%">Nome</th>
+                                <th width="55%">CPF/CNPJ</th>
+                                <th>Email</th>
+                                <th>Perfil</th>
+                                <th>Empresa</th>
+                                <th>Filial/Unidade</th>
+                                <th>&nbsp;&nbsp;&nbsp;Ações&nbsp;&nbsp;&nbsp;</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                    <tr>
+                        <td>Antonio da Silva</td>
+                        <td>087.456.678-90</td>
+                        <td>antonio.silva@volans.com.br</td>
+                        <td>Operador</td>
+                        <td>Volans Informática Ltda</td>
+                        <td>Vila Olímpia</td>
+                        <td> 
+                            <button type="button" class="close" aria-label="Editar" data-toggle="modal" data-target="#add-modal">
+                                    <span class="fa fa-pencil"></span>
+                            </button>&nbsp;                                    
+                            <button type="button" class="close" aria-label="Visualizar" data-toggle="modal" data-target="#view-modal">
+                                    <span class="fa fa-eye"></span>
+                            </button>  
+                        </td>
+                    </tr>                        
+                    <tr>
+                        <td>Antonio da Souza</td>
+                        <td>789.456.678-90</td>
+                        <td>antonio.souza@volans.com.br</td>
+                        <td>Operador</td>
+                        <td>Volans Informática Ltda</td>
+                        <td>Vila Olímpia</td>
+                        <td> 
+                            <button type="button" class="close" aria-label="Editar" data-toggle="modal" data-target="#add-modal">
+                                    <span class="fa fa-pencil"></span>
+                            </button>&nbsp;                                    
+                            <button type="button" class="close" aria-label="Visualizar" data-toggle="modal" data-target="#view-modal">
+                                    <span class="fa fa-eye"></span>
+                            </button>  
+                        </td>
+                    </tr>                          
+                </tbody>
+            </table>
+        </div>
+
+<!--
+    
+                <div class="card-body table-content">
+                    <div class="row" *ngFor="let transportCompany of transportCompanies; let i = index" [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+                    <div class="col-sm-4 text-left">{{transportCompany.groupOwnerName}}</div>
+                    <div class="col-sm-3 text-left">{{transportCompany.businessName}}</div>
+                    <div class="col-sm-3 text-center">{{transportCompany.groupOwnerId}}</div>
+                    <div class="col-sm-2 text-center">
+                        <a class="btn btn-success btn-xs" href="view.html">VI</a>
+                        <a class="btn btn-warning btn-xs" href="edit.html">ED</a>
+                        <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">EX</a>
+                    </div>
+                    </div>
+                </div>
+ --> 
+ 
+
+    <div class="row" style="margin-top:20vh;">
+        <div class="col-sm-4" >
+            <button (click)="goBack()" id="btnBack" class="btn btn-primary btn-block"><b>Voltar</b></button>
+        </div>
+        <div class="col-sm-4">
+            <button (click)="goBack()" id="btnBack" class="btn btn-info btn-block"><b>Ver mais usuários</b></button>
+        </div>
+        <div class="col-sm-4">
+            <button (click)="goBack()" id="btnBack" class="btn btn-danger btn-block"><b>Sair</b></button>
+        </div>
+        </div>
+
+</div>
+
+<!-- Modal Adicionar -->
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabel">Adicionar Usuário</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="row" style="margin-top:2vh;">
+                        <div class="col-sm-12">
+            
+                            <div class="form-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="groupId">Grupo :</label>
+                                            <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                                [disabled]="userGroups.length < 2"
+                                                [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                                                class="form-control" id="groupId" name="groupId">
+                                                <option value="" selected>Selecione o grupo</option>
+                                                <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                            </select>
+                                        </div>                                    
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyId">Empresa :</label>
+                                            <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                                                [disabled]="userCompanies.length < 2"
+                                                [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                                                class="form-control" id="companyId" name="companyId">
+                                                <option value="" selected>Selecione a empresa</option>
+                                                <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                                            </select>
+                                        </div>                                    
+                                    </div>        
+                                </div>        
+
+                                <div class="form-group">
+                                    <label for="groupOwnerName">Nome da Empresa :</label>
+                                    <input [(ngModel)]="form.groupOwnerName" maxlength="50" 
+                                    type="text" class="form-control" id="groupOwnerName" name="groupOwnerName">
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="businessName">Nome Fantasia :</label>
+                                    <input [(ngModel)]="form.businessName" maxlength="50" 
+                                    type="text" class="form-control" id="businessName" name="businessName">
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="groupOwnerId">CNPJ :</label>
+                                            <input [(ngModel)]="form.groupOwnerId" maxlength="15" 
+                                            type="text" class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                        </div>
+                                    </div>                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="addressNeighborhood">Insc Estadual :</label>
+                                            <input [(ngModel)]="form.addressNeighborhood" maxlength="50" 
+                                            type="text" class="form-control" id="addressNeighborhood" name="addressNeighborhood">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inscMunicipal">Insc Municipal :</label>
+                                            <input [(ngModel)]="form.inscMunicipal" maxlength="15" 
+                                            type="text" class="form-control" id="inscMunicipal" name="inscMunicipal">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label for="address">Logradouro :</label>
+                                            <input [(ngModel)]="form.address" maxlength="256" 
+                                            type="text" class="form-control" id="address" name="address">
+                                        </div>
+                                    </div>                    
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="addressNumber">Número :</label>
+                                            <input [(ngModel)]="form.addressNumber" maxlength="10" 
+                                            type="text" class="form-control" id="addressNumber" name="addressNumber">
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="addressComplement">Complemento :</label>
+                                            <input [(ngModel)]="form.addressComplement" maxlength="50" 
+                                            type="text" class="form-control" id="addressComplement" name="addressComplement">
+                                        </div>
+                                    </div>                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="addressNeighborhood">Bairro :</label>
+                                            <input [(ngModel)]="form.addressNeighborhood" maxlength="50" 
+                                            type="text" class="form-control" id="addressNeighborhood" name="addressNeighborhood">
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cityName">Cidade :</label>
+                                            <input [(ngModel)]="form.cityName" maxlength="50" 
+                                            type="text" class="form-control" id="cityName" name="cityName">
+                                        </div>
+                                    </div>                    
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="stateCode">Estado :</label>
+                                            <input [(ngModel)]="form.stateCode" maxlength="2" 
+                                            type="text" class="form-control" id="stateCode" name="stateCode">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="zipCode">C.E.P. :</label>
+                                            <input [(ngModel)]="form.zipCode" maxlength="10" 
+                                            type="text" class="form-control" id="zipCode" name="zipCode">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="phoneNumber">Fone :</label>
+                                            <input [(ngModel)]="form.phoneNumber" maxlength="10" 
+                                            type="text" class="form-control" id="fone" name="phoneNumber">
+                                        </div>
+                                    </div>                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="emailAddress">Email :</label>
+                                            <input [(ngModel)]="form.emailAddress" maxlength="100" 
+                                            type="text" class="form-control" id="emailAddress" name="emailAddress">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="siteAddress">Site :</label>
+                                            <input [(ngModel)]="form.siteAddress" maxlength="100" 
+                                            type="text" class="form-control" id="siteAddress" name="siteAddress">
+                                        </div>
+                                    </div>  
+                                </div>
+<!--                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="phoneNumber">Celular :</label>
+                                            <input [(ngModel)]="form.phoneNumber" maxlength="10" 
+                                            type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phoneCountryCode">Contato :</label>
+                                            <input [(ngModel)]="form.phoneCountryCode" maxlength="14" 
+                                            type="text" class="form-control" id="phoneCountryCode" name="phoneCountryCode">
+                                        </div>
+                                    </div>  
+-->            
+                    
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="additionalInfo">Informações adicionais :</label>
+                                            <input [(ngModel)]="form.additionalInfo" maxlength="256" 
+                                            type="text" class="form-control" id="additionalInfo" name="additionalInfo">
+                                        </div>
+                                    </div>                    
+                                </div>
+                
+                            </div> 
+            
+                        </div>
+                    </div>
+            
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancel"  type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button id="btnConfirm" (click)="onConfirm()" [disabled]="disableConfirmButton()" type="button" class="btn btn-primary">Adicionar</button>
+           </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Visualizar -->
+<div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Visualizar Usuário</h4>
+                </div>
+                <div class="modal-body">
+    
+                    <form>
+                        <div class="row" style="margin-top:2vh;">
+                            <div class="col-sm-12">
+                
+                                <div class="form-content">
+                
+                                    <div class="form-group">
+                                        <label for="groupOwnerName">Nome do Grupo :</label>
+                                        <input [(ngModel)]="form.groupOwnerName" maxlength="50" 
+                                        type="text" class="form-control" id="groupOwnerName" name="groupOwnerName">
+                                    </div>
+                
+                                    <div class="form-group">
+                                        <label for="businessName">Nome Fantasia :</label>
+                                        <input [(ngModel)]="form.businessName" maxlength="50" 
+                                        type="text" class="form-control" id="businessName" name="businessName">
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="groupOwnerId">CNPJ :</label>
+                                                <input [(ngModel)]="form.groupOwnerId" maxlength="15" 
+                                                type="text" class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                            </div>
+                                        </div>                    
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="addressNeighborhood">Insc Estadual :</label>
+                                                <input [(ngModel)]="form.addressNeighborhood" maxlength="50" 
+                                                type="text" class="form-control" id="addressNeighborhood" name="addressNeighborhood">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inscMunicipal">Insc Municipal :</label>
+                                                <input [(ngModel)]="form.inscMunicipal" maxlength="15" 
+                                                type="text" class="form-control" id="inscMunicipal" name="inscMunicipal">
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label for="address">Logradouro :</label>
+                                                <input [(ngModel)]="form.address" maxlength="256" 
+                                                type="text" class="form-control" id="address" name="address">
+                                            </div>
+                                        </div>                    
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="addressNumber">Número :</label>
+                                                <input [(ngModel)]="form.addressNumber" maxlength="10" 
+                                                type="text" class="form-control" id="addressNumber" name="addressNumber">
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="addressComplement">Complemento :</label>
+                                                <input [(ngModel)]="form.addressComplement" maxlength="50" 
+                                                type="text" class="form-control" id="addressComplement" name="addressComplement">
+                                            </div>
+                                        </div>                    
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="addressNeighborhood">Bairro :</label>
+                                                <input [(ngModel)]="form.addressNeighborhood" maxlength="50" 
+                                                type="text" class="form-control" id="addressNeighborhood" name="addressNeighborhood">
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cityName">Cidade :</label>
+                                                <input [(ngModel)]="form.cityName" maxlength="50" 
+                                                type="text" class="form-control" id="cityName" name="cityName">
+                                            </div>
+                                        </div>                    
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="stateCode">Estado :</label>
+                                                <input [(ngModel)]="form.stateCode" maxlength="2" 
+                                                type="text" class="form-control" id="stateCode" name="stateCode">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="zipCode">C.E.P. :</label>
+                                                <input [(ngModel)]="form.zipCode" maxlength="10" 
+                                                type="text" class="form-control" id="zipCode" name="zipCode">
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="phoneNumber">Fone :</label>
+                                                <input [(ngModel)]="form.phoneNumber" maxlength="10" 
+                                                type="text" class="form-control" id="fone" name="phoneNumber">
+                                            </div>
+                                        </div>                                    
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="emailAddress">Email :</label>
+                                                <input [(ngModel)]="form.emailAddress" maxlength="100" 
+                                                type="text" class="form-control" id="emailAddress" name="emailAddress">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="siteAddress">Site :</label>
+                                                <input [(ngModel)]="form.siteAddress" maxlength="100" 
+                                                type="text" class="form-control" id="siteAddress" name="siteAddress">
+                                            </div>
+                                        </div>  
+                                    </div>
+    <!--                                    
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="phoneNumber">Celular :</label>
+                                                <input [(ngModel)]="form.phoneNumber" maxlength="10" 
+                                                type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneCountryCode">Contato :</label>
+                                                <input [(ngModel)]="form.phoneCountryCode" maxlength="14" 
+                                                type="text" class="form-control" id="phoneCountryCode" name="phoneCountryCode">
+                                            </div>
+                                        </div>  
+    -->            
+                        
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="additionalInfo">Informações adicionais :</label>
+                                                <input [(ngModel)]="form.additionalInfo" maxlength="256" 
+                                                type="text" class="form-control" id="additionalInfo" name="additionalInfo">
+                                            </div>
+                                        </div>                    
+                                    </div>
+                    
+                                </div> 
+                
+                            </div>
+                        </div>
+                
+                    </form>
+    
+    
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancel"  type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+               </div>
+            </div>
+        </div>
+    </div>

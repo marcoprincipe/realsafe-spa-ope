@@ -1,0 +1,98 @@
+
+<rs-text-dialog></rs-text-dialog>
+<rs-group-add></rs-group-add>
+<rs-group-detail></rs-group-detail>
+<ng-vk-keyboard
+    (onEnterClicked)="onEnterClicked($event)"
+    (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+<div class="container-fluid">
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-header">
+                    <div>Cadastro de Grupos</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row" style="margin-top:2vh;">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupOwnerId" (change)="onOwnerChange($event)"
+                                            [disabled]="groupOwners.length < 2"
+                                            [setFocus]='{"field": "btnSearch", "allowEmpty": false}'
+                                            class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                            <option value="" selected>Proprietário</option>
+                                            <option *ngFor="let groupOwner of groupOwners" value="{{groupOwner.groupOwnerId}}">{{groupOwner.groupOwnerName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div> 
+                                <div class="col-md-5">
+                                </div>    
+                                <div class="col-md-2 align-self-center">
+                                    <button id="btnSearch" type="button" class="btn btn-primary btn-block" (click)="searchGroups()">Buscar</button>
+                                </div>                        
+                                <div class="col-md-10">                                    
+                                </div>
+                                <div class="col-md-2  align-self-center">
+                                    <button pButton type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-modal" >+ Novo</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="font-size:12px;">Você está vendo 2 de 10 grupos.</label>   
+                                </div>
+                            </div>
+        
+                        </div>
+                    </form>
+                    <div class="row" style="margin-top:5vh;"></div>
+                    <div class="card table-content">
+                       <div class="card-header border-top detail-table-header">
+                            <div class="row">
+                                <div class="col-md-3 text-center" style="font-size:12px;">Relação de Grupos</div>
+                                <div class="col-md-2 text-center" style="font-size:12px;">Contato</div>
+                                <div class="col-md-2 text-center" style="font-size:12px;">Telefone</div>                                  
+                                <div class="col-md-3 text-center" style="font-size:12px;">Empresas Associadas</div>
+                                <div class="col-md-2 text-center" style="font-size:12px;">Ação</div>
+                            </div>
+                        </div>
+                        <div class="card-body table-content" style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <div class="row" *ngFor="let group of groups; let i = index" [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+
+                                <div class="col-md-3 text-center" style="font-size:10px;">{{group.groupName}}</div>
+                                <div class="col-md-2 text-center" style="font-size:10px;">{{group.contact}}</div>
+                                <div class="col-md-2 text-center" style="font-size:10px;">{{group.phoneNumber}}</div>
+                                <div class="col-md-3 text-center" style="font-size:10px;">{{group.companyName}}</div>
+
+                                <div class="col-sm-2 text-center">
+                                <button class="action-button" title="Editar um grupo"
+                                        (click)="updateGroup(i)">
+                                        <span class="fa fa-pencil"></span>
+                                </button>                                    
+                                <button class="action-button" title="Detalhes do grupo"
+                                        (click)="viewGroup(i)">
+                                        <span class="fa fa-eye"></span>
+                                </button>                                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </div>        
+            <div class="row" style="margin-top:15vh;">
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-back2-button"><b>Voltar</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button id="btnBack" class="btn btn-block menu-more-button"><b>Ver mais grupos</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button (click)="goLoginPage()" id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+                </div>
+            </div>
+ 

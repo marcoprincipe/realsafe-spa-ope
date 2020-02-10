@@ -1,0 +1,182 @@
+
+<rs-company-detail
+    *ngIf="isCompanyDetail"
+    [(visible)]="isCompanyDetail">    
+</rs-company-detail>
+
+<div class="modal fade" id="companyDetailDialog" [ngStyle]="{'display': isCompanyDetail === true ? 'none' : 'block'}"  tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabel">Ver informações da empresa </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" style="margin-top:2vh;">
+                    <div class="col-sm-12">
+                        <div class="form-content" *ngIf="company">
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="groupOwnerId">Proprietário :</label>
+                                        <input type="text" [ngModel]="company.groupOwnerId" class="form-control" [disabled]="true" >
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="groupId">Grupo :</label>
+                                        <input type="text" [ngModel]="company.groupId" class="form-control" [disabled]="true">
+                                    </div>                                    
+                                </div>    
+                            </div> 
+                                    
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="companyName">Razão social :</label>
+                                        <input type="text" [ngModel]="company.companyName" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">               
+                                    <div class="form-group">
+                                        <label for="businessName">Nome Fantasia :</label>
+                                        <input type="text" [ngModel]="company.businessName" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="companyId">CNPJ :</label>
+                                        <input type="text" [ngModel]="company.companyId" class="form-control" [disabled]="true">
+                                   </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="address">Logradouro :</label>
+                                        <input type="text" [ngModel]="company.address" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addressComplement">Complemento :</label>
+                                        <input type="text" [ngModel]="company.addressComplement" class="form-control" [disabled]="true">                                   
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addressNeighborhood">Bairro :</label>
+                                        <input type="text" [ngModel]="company.addressNeighborhood" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                                        
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="cityName">Cidade :</label>
+                                        <input type="text" [ngModel]="company.cityName" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="stateCode">Estado :</label>
+                                        <input type="text" [ngModel]="company.stateCode" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                                        
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="siteAddress">Site :</label>
+                                        <input type="text" [ngModel]="company.siteAddress" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="contact">Contato :</label>
+                                        <input type="text" [ngModel]="company.contactName" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="emailAddress">Email de contato:</label>
+                                        <input type="text" [ngModel]="company.emailAddress" class="form-control" [disabled]="true">                                    
+                                    </div>
+                                </div>                                        
+                            </div>    
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="phoneNumber">Fone comercial :</label>
+                                        <input type="text" [ngModel]="company.phoneNumber" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                    
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="cellphoneNumber">Celular comercial :</label>
+                                        <input type="text" [ngModel]="company.cellphoneNumber" class="form-control" [disabled]="true">
+                                    </div>
+                                </div>                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="additionalInfo">Informações adicionais :</label>
+                                        <textarea [ngModel]="company.additionalInfo" class="form-control" [disabled]="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input [(ngModel)]="company.status" type="checkbox" 
+                                            class="form-check-input" id="status" value="" [disabled]="true">
+                                        <label class="form-check-label" for="status">Ativo? :</label>
+                                    </div>
+                                </div>                                        
+                            </div>
+                             
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal-footer detail-footer-box">
+
+                <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <button id="btnExit" type="button" data-dismiss="modal" (click)="hide()" class="btn btn-danger btn-block">Sair</button>
+                    </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+    

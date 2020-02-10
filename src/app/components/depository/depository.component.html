@@ -1,0 +1,54 @@
+<rs-confirm-deposit-dialog 
+    #confirmDepositDialog 
+    [title]="confirmationData.title"
+    [amount]="confirmationData.amount"
+    [bankNotes]="confirmationData.bankNotes"
+    (onClick)="printReceipt($event)">
+</rs-confirm-deposit-dialog>
+
+<div class="container">
+
+  <div class="row" style="margin-top:2vh;">
+      <div class="col-sm-12">
+        <div class="form-header">
+            <div class="text-center">Depósito</div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row" style="margin-top:15vh;">
+      
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+
+        <div *ngIf="checking">
+            <div class="text-center">
+                <h4 class="text-primary" style="margin-top:1vh;"><strong>{{message}}</strong></h4>
+            </div>
+        </div>
+
+        <div *ngIf="hasError">
+            <div class="text-center">
+                <h4 class="alert alert-danger" style="margin-top:3vh;"><strong>{{message}}</strong></h4>
+            </div>
+        </div>
+
+      </div>
+      <div class="col-sm-2"></div>
+
+  </div>
+
+  <div class="row" style="margin-top:15vh;">
+
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="text-center">
+                <button id="btnFinalize" type="button" 
+                    (click)="onFinalizeClicked($event)" class="btn btn-block menu-button"><b>Finalizar</b></button>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+
+  </div>
+
+</div>

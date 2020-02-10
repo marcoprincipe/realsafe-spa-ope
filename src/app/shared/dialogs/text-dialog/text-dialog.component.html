@@ -1,0 +1,35 @@
+<div class="modal fade" id="{{name}}" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header-dialog modal-header">
+        <div class="modal-title"><h6><b>{{title}}</b></h6></div>
+      </div>
+
+      <div *ngIf="messageType === 'success'" class="modal-body border border-top-0 border-success">
+          <div class="float-left align-middle text-center text-success"><span class="fa fa-check-circle fa-2x"></span></div>
+          <div class="align-middle text-center text-success">{{message}}</div>
+      </div>
+
+      <div *ngIf="messageType === 'info'" class="modal-body border border-top-0 border-info">
+          <div class="float-left align-middle text-center text-info"><span class="fa fa-info-circle fa-2x"></span></div>
+          <div class="align-middle text-center text-info">{{message}}</div>
+      </div>
+
+      <div *ngIf="messageType === 'warning'" class="modal-body border border-top-0 border-warning">
+          <div class="float-left align-middle text-center text-warning"><span class="fa fa-exclamation-circle fa-2x"></span></div>
+          <div class="align-middle text-center text-warning">{{message}}</div>
+      </div>
+
+      <div *ngIf="messageType === 'error'" class="modal-body border border-top-0 border-danger">
+          <div class="float-left align-middle text-center text-danger"><span class="fa fa-times-circle fa-2x"></span></div>
+          <div class="align-middle text-center text-danger">{{message}}</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

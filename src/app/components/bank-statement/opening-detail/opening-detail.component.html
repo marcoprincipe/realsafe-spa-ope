@@ -1,0 +1,156 @@
+<div id="openingDetailDialog" class="modal fade" tabindex="-1" role="dialog">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        
+        <div class="modal-content">
+  
+            <div class="modal-header detail-title">
+                <div class="align-middle">
+                    <div><strong>Detalhes da abertura - {{unitName}}</strong></div>
+                </div>
+            </div>
+  
+            <div class="modal-body">
+  
+                <div class="container-fluid detail-header-box">
+  
+                    <div class="row detail-header-text">
+                        <div class="col-sm-3 text-center">Data</div>
+                        <div class="col-sm-3 text-center">Terminal</div>
+                        <div class="col-sm-3 text-center">NSU</div>
+                        <div class="col-sm-3 text-center">Usuário</div>
+                    </div>
+                    <div class="row border-top detail-text">
+                        <div class="col-sm-3 text-center">{{dateTime | date: "dd/MM/yyyy HH:mm" : 'UTC'}}</div>
+                        <div class="col-sm-3 text-center">{{terminalId}}</div>
+                        <div class="col-sm-3 text-center">{{nsuTerminal}}</div>
+                        <div class="col-sm-3 text-center">{{userName}}</div>
+                    </div>
+                
+                </div>
+  
+                <div class="container-fluid form-content" style="margin-top:2vw;">
+  
+                  <div class="form-row">
+  
+                      <div class="col-sm-6">
+                          <label class="detail-header-text" for="lastClosingDateTime">Último fechamento :</label>
+                      </div>
+  
+                      <div class="col-sm-6">
+                          <label class="detail-header-text" for="lastClosingAmoutCollected">&nbsp;</label>
+                      </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+                      <div class="col-sm-12">
+                          <hr style="margin-top:0rem;">
+                      </div>
+                  </div>
+  
+                  <div class="form-row">
+  
+                      <div class="form-group col-sm-6">
+                          <input id="lastClosingDateTime" name="lastClosingDateTime"  readonly="true"
+                                  [ngModel]="openingDetail.lastClosingDateTime | date : 'dd/MM/yyyy HH:mm' : 'UTC'"
+                                  tabindex="-1" type="text" class="form-control detail-text text-center"> 
+                      </div>
+  
+                      <div class="form-group col-sm-6">
+                          <input id="lastClosingAmoutCollected" name="lastClosingAmoutCollected" readonly="true" 
+                                  [ngModel]="openingDetail.lastClosingAmount | currency : 'BRL'"
+                                  tabindex="-1" type="text" class="form-control detail-text text-right"> 
+                      </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+  
+                      <div class="col-sm-8">
+                          <label class="detail-header-text" for="openingDateTime">Abertura :</label>
+                      </div>
+  
+                      <div class="col-sm-4">
+                          <label class="detail-header-text" for="amountInSafe">Data Contabil :</label>
+                      </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+                      <div class="col-sm-8">
+                          <hr style="margin-top:0rem;">
+                      </div>
+                      <div class="col-sm-4">
+                        <hr style="margin-top:0rem;">
+                    </div>
+                </div>
+  
+                  <div class="form-row">
+  
+                      <div class="form-group col-sm-4">
+                          <input id="openingDateTime" name="openingDateTime" readonly="true"
+                              [ngModel]="openingDetail.openingDateTime | date : 'dd/MM/yyyy HH:mm' : 'UTC'"
+                              tabindex="-1" type="text" class="form-control detail-text text-center"> 
+                      </div>
+  
+                      <div class="form-group col-sm-4">
+                          <input id="amountInSafe" name="amountInSafe"  readonly="true"
+                              [ngModel]="openingDetail.amountInSafe | currency : 'BRL'"
+                              tabindex="-1" type="text" class="form-control detail-text text-right"> 
+                      </div>
+
+                      <div class="form-group col-sm-4">
+                          <input id="accountingDate" name="accountingDate" readonly="true"
+                              [ngModel]="openingDetail.accountingDate | date : 'dd/MM/yyyy' : 'UTC'"
+                              tabindex="-1" type="text" class="form-control detail-text text-center"> 
+                      </div>
+  
+                  </div>
+
+                    <div class="form-row">
+            
+                        <div class="col-sm-12">
+                            <hr style="margin-top:0rem;">
+                        </div>
+            
+                    </div>
+
+                    <div class="form-row">
+            
+                        <div class="form-check col-sm-12 text-center">
+                            <input type="checkbox" class="form-check-input" id="etvClosing" name="etvClosing" disabled="true"> 
+                            <label class="form-check-label">&nbsp;&nbsp;&nbsp;Fechamento pela ETV</label>
+                        </div>
+            
+                    </div>
+                
+                </div>
+  
+            </div>
+  
+            <div class="modal-footer detail-footer-box">
+  
+                <div class="container-fluid">
+                
+                    <div class="row">
+  
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button *ngIf="printReceipt === 'Y'" id="btnPrintReceipt" type="button" (click)="doPrintReceipt()" class="btn btn-sm btn-primary btn-block">Imprimir</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button id="btnExit" type="button" (click)="hide()" class="btn btn-sm btn-danger btn-block">Sair</button>
+                        </div>
+  
+                    </div>
+                
+                </div>
+  
+            </div>
+  
+        </div>
+  
+    </div>
+  
+  </div>

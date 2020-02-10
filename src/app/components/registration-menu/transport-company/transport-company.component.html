@@ -1,0 +1,131 @@
+
+<rs-text-dialog></rs-text-dialog>
+<rs-transport-company-add></rs-transport-company-add>
+<rs-transport-company-detail></rs-transport-company-detail>
+<ng-vk-keyboard
+    (onEnterClicked)="onEnterClicked($event)"
+    (onCancelClicked)="onCancelClicked($event)">
+</ng-vk-keyboard>
+
+<div class="container-fluid">
+
+        <div class="row" style="margin-top:2vh;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-header">
+                    <div>Cadastro de Empresas de Transporte de Valores</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row" style="margin-top:2vh;">
+
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupOwnerId" (change)="onOwnerChange($event)"
+                                            [disabled]="owwers.length < 2"
+                                            [setFocus]='{"field": "groupId", "allowEmpty": false}'
+                                            class="form-control" id="groupOwnerId" name="groupOwnerId">
+                                            <option value="" selected>Proprietário</option>
+                                            <option *ngFor="let owwer of owwers" value="{{owwer.groupOwnerId}}">{{owwer.groupOwnerName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.groupId" (change)="onGroupChange($event)"
+                                            [disabled]="userGroups.length < 2"
+                                            [setFocus]='{"field": "companyId", "allowEmpty": false}'
+                                            class="form-control" id="groupId" name="groupId">
+                                            <option value="" selected>Grupo</option>
+                                            <option *ngFor="let userGroup of userGroups" value="{{userGroup.groupId}}">{{userGroup.groupName}}</option>
+                                        </select>
+                                    </div>
+                                </div>    
+                                <div class="col-md-2 align-self-center">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal">Buscar</button>
+                                </div>                        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.companyId" (change)="onCompanyChange($event)"
+                                            [disabled]="userCompanies.length < 2"
+                                            [setFocus]='{"field": "unitId", "allowEmpty": false}'
+                                            class="form-control" id="companyId" name="companyId">
+                                            <option value="" selected>Empresa</option>
+                                            <option *ngFor="let userCompany of userCompanies" value="{{userCompany.companyId}}">{{userCompany.companyName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>        
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="form.unitId" (change)="onUnitChange($event)"
+                                            [disabled]="userUnits.length < 2"
+                                            class="form-control" id="unitId" name="unitId">
+                                            <option value="" selected>Filial/Unidade</option>
+                                            <option *ngFor="let userUnit of userUnits" value="{{userUnit.unitId}}">{{userUnit.unitName}}</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-2  align-self-center">
+                                    <button pButton type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-modal" >+ Novo</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="font-size:12px;">Você está vendo 2 de 10 empresas.</label>   
+                                </div>
+                            </div>
+        
+                        </div>
+                    </form>
+                    <div class="row" style="margin-top:2vh;"></div>
+                    <div class="card table-content">
+                       <div class="card-header border-top detail-table-header">
+                            <div class="row">
+                                <div class="col-sm-3 text-center" style="font-size:12px;">Relação de ETV´s</div>
+                                <div class="col-sm-3 text-center" style="font-size:12px;">Contato</div>
+                                <div class="col-sm-2 text-center" style="font-size:12px;">Telefone</div>                                  
+                                <div class="col-sm-3 text-center" style="font-size:12px;">Filiais Associadas</div>
+                                <div class="col-sm-1 text-center" style="font-size:12px;">Ação</div>
+                            </div>
+                        </div>
+                        <div class="card-body table-content" style="padding-top: 1rem; padding-bottom: 1rem;">
+                            <div class="row" *ngFor="let company of companies; let i = index" [ngStyle]="{'background-color': i % 2 === 0 ? '#f6f6f6' : ''}">
+ <!--
+                                <div class="col-md-3 text-center" style="font-size:12px;">{{company.}}</div>
+                                <div class="col-md-3 text-center" style="font-size:12px;">{{company.}}</div>
+                                <div class="col-md-2 text-center" style="font-size:12px;">{{company.}}</div>
+                                <div class="col-md-3 text-center" style="font-size:12px;">{{company.}}</div>
+ -->
+                                <div class="col-sm-2 text-center">
+                                <button class="action-button" title="Editar ua empresa"
+                                        (click)="updateETV(i)">
+                                        <span class="fa fa-pencil"></span>
+                                </button>                                    
+                                <button class="action-button" title="Detalhes da empresa"
+                                        (click)="viewETV(i)">
+                                        <span class="fa fa-eye"></span>
+                                </button>                                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+
+            </div>        
+            <div class="row" style="margin-top:15vh;">
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-back2-button"><b>Voltar</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-more-button"><b>Ver mais ETV's</b></button>
+                </div>
+                <div class="col-sm-4">
+                    <button (click)="goBack()" id="btnBack" class="btn btn-block menu-back-button"><b>Sair</b></button>
+                </div>
+            </div>
+ 

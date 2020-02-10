@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+    <div class="row" style="margin-top:35vh;" *ngIf="checking">
+
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status"></div>
+                <h4 class="text-primary" style="margin-top:3vh;"><strong>{{message}}</strong></h4>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+
+    </div>
+
+    <div class="row" style="margin-top:35vh;" *ngIf="hasError">
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="text-center">
+                    <h4 class="alert alert-danger" style="margin-top:3vh;"><strong>{{message}}</strong></h4>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+    
+        </div>
+    
+</div>
+
